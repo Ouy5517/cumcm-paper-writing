@@ -1,0 +1,4 @@
+interface:
+  display_name: "CUMCM Paper Writing"
+  short_description: "Generate CUMCM-compliant papers"
+  default_prompt: "Use $cumcm-paper-writing to draft or review a CUMCM paper."

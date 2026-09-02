@@ -1,0 +1,77 @@
+name: cumcm-paper-writing
+version: 0.2.0
+description: >
+  Declarative routing for source-grounded mathematical-modeling contest paper
+  planning, drafting, review, and submission preflight.
+
+always_load:
+  - static/core/stance.md
+  - static/core/workflow.md
+  - static/core/output-format.md
+  - static/core/contest-baseline.md
+
+axes:
+  task:
+    detect: |
+      Choose one or more modes from plan, draft-section, draft-paper,
+      restructure, audit, preflight, and submission-package. Use preflight
+      whenever the user asks whether a paper is ready to submit.
+    values:
+      plan: static/fragments/task/plan.md
+      draft-section: static/fragments/task/draft-section.md
+      draft-paper: static/fragments/task/draft-paper.md
+      restructure: static/fragments/task/restructure.md
+      audit: static/fragments/task/audit.md
+      preflight: static/fragments/task/preflight.md
+      submission-package: static/fragments/task/submission-package.md
+    default: plan
+    multi: true
+
+  year:
+    detect: |
+      Use the year named by the user or the supplied official notice. Use
+      current when the year is not known; never combine limits or declarations
+      from different years.
+    values:
+      current: null
+      "2026": references/requirements.md
+      "2025": references/requirements.md
+      "2019": references/requirements.md
+    default: current
+    multi: false
+
+  delivery:
+    detect: |
+      Detect whether the author needs Markdown/LaTeX source, a rendered DOCX
+      or PDF, a physical-paper package, an electronic package, or both.
+    values:
+      source: static/fragments/delivery/source.md
+      rendered: static/fragments/delivery/rendered.md
+      electronic: static/fragments/delivery/electronic.md
+      physical: static/fragments/delivery/physical.md
+      both: static/fragments/delivery/both.md
+    default: source
+    multi: true
+
+  language:
+    detect: |
+      Default to Chinese for a Chinese request. Preserve mathematical symbols,
+      variable names, and standard English method names when they are canonical.
+    values:
+      zh: static/fragments/language/zh.md
+      en: static/fragments/language/en.md
+    default: zh
+    multi: false
+
+references:
+  on_demand:
+    - condition: exact current-year format, page, file-size, anonymity, or appendix rule is needed
+      path: references/requirements.md
+    - condition: planning or drafting a full paper structure
+      path: references/paper-structure.md
+    - condition: claim/evidence provenance, citation, or reproducibility is uncertain
+      path: references/evidence-ledger.md
+    - condition: final PDF/Word or archive submission readiness is being checked
+      path: references/preflight.md
+    - condition: a Chinese wording, declaration, or format label is required
+      path: references/chinese-quick-reference.md
