@@ -11,6 +11,12 @@ Run these checks on the selected year and record PASS, FAIL, or AUTHOR CHECK.
 - The body page limit comes from the selected year's official rule; do not
   import a 2019/2025 limit into 2026.
 - No table of contents and no unsupported claim in the abstract or conclusion.
+- Figures and tables are numbered, referenced in prose, legible at final scale,
+  and label observations, fits, extrapolations, units, denominators, and scope.
+- If a supplied template controls presentation, major headings, subheadings,
+  abstract label, keywords, three-line tables, and captions match its contract.
+- LaTeX source retains structured mathematics (`\sum`, `\frac`, subscripts,
+  superscripts, braces); generated prose contains no `_()`/`^()` artifacts.
 
 ## Physical package
 
@@ -38,6 +44,13 @@ Run these checks on the selected year and record PASS, FAIL, or AUTHOR CHECK.
 - Paper values match code, tables, figures, appendix, and archive.
 - Every external/public source is cited in text and in the reference list.
 - Current-year entry and AI-use notices are checked separately.
+- The AI-use statement precedes references and agrees with the anonymous detail
+  PDF in supporting materials when the selected rule requires it.
+- The exact final TeX compiles twice without missing glyphs, undefined controls,
+  unresolved references, or stale-output substitution; every PDF page is rendered
+  to an image and visually inspected.
+- Final PDF and support archive are produced from explicit inputs, their members
+  are inspected, and SHA256 hashes identify the reviewed artifacts.
 
 ## Status rule
 

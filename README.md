@@ -14,6 +14,10 @@ Modeling (CUMCM).
   citations, team facts, or validation.
 - Covers anonymity, reproducible source programs, appendices, references, and
   supporting ZIP/RAR archives.
+- Applies supplied `CUMCMThesis` class/style/example conventions, including
+  three-line tables, numbered figures, and current-year AI-use placement.
+- Provides a reproducible `paper.tex` → XeLaTeX → PDF workflow with formula
+  fidelity checks, every-page rendering, anonymity scans, and SHA256 recording.
 - Loads detailed references on demand to keep context usage small.
 
 ## Installation
@@ -36,13 +40,20 @@ For a final paper or submission check, provide the contest year and the
 current official notice when available. The official notice and
 division-specific requirements override the bundled baseline.
 
+For PDF generation, also provide the `CUMCMThesis` template directory when it
+is not already in the project. The workflow expects XeLaTeX (MiKTeX or TeX Live),
+Poppler tools such as `pdfinfo` and `pdftoppm`, and the project's analysis/test
+runtime. It produces `paper.tex`, `paper.pdf`, rendered QA pages, a support
+archive, and verification hashes.
+
 ## Project layout
 
     SKILL.md                 Router and core behavior
     manifest.yaml            Axis detection and lazy-loading map
     static/core/             Shared stance, workflow, output, and baseline
     static/fragments/        Task, delivery, and language fragments
-    references/              Detailed rules, structure, evidence, and preflight
+    references/              Detailed rules, LaTeX workflow, evidence, and preflight
+    tests/                   Skill workflow contract tests
     agents/openai.yaml       Codex UI metadata
 
 ## Scope

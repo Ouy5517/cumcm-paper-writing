@@ -1,8 +1,8 @@
 name: cumcm-paper-writing
-version: 0.2.0
+version: 0.4.0
 description: >
-  Declarative routing for source-grounded mathematical-modeling contest paper
-  planning, drafting, review, and submission preflight.
+  Declarative routing for source-grounded, template-aware CUMCM paper
+  planning, drafting, rendering, review, and submission preflight.
 
 always_load:
   - static/core/stance.md
@@ -65,6 +65,10 @@ axes:
 
 references:
   on_demand:
+    - condition: a PDF must be generated with LaTeX, formulas render incorrectly, or a reproducible XeLaTeX build and support package is required
+      path: references/latex-production-workflow.md
+    - condition: a CUMCMThesis/cumcmthesis class, style, example, or local template folder is supplied
+      path: references/cumcmthesis-template.md
     - condition: exact current-year format, page, file-size, anonymity, or appendix rule is needed
       path: references/requirements.md
     - condition: planning or drafting a full paper structure

@@ -23,6 +23,15 @@ official notice or division rule overrides it.
 - No program used: “本论文没有用到程序”.
 - No supporting material: “本论文没有支撑材料”.
 
+## 2026 AI-use declaration supplied with the local template
+
+- AI not used: “本参赛队在竞赛过程中未使用任何AI工具。”
+- AI used: “本参赛队在竞赛过程中使用了AI工具，主要用于【简要用途】，详细使用情况见支撑材料。”
+
+Select exactly one and place it before references. Replace `【简要用途】` with
+the true bounded uses; when AI was used, add `AI工具使用详情.pdf` to the support
+archive.
+
 ## 2026 baseline wording
 
 - A4 margins: each side is at least 2.5 cm (厘米).

@@ -1,117 +1,68 @@
 ---
 name: cumcm-paper-writing
-description: "Use when planning, drafting, restructuring, reviewing, formatting, or packaging a China Undergraduate Mathematical Contest in Modeling (CUMCM) paper. It covers source-grounded claims, mathematical-model sections, anonymity, citations, runnable code, appendices, physical/electronic submission separation, and current-year preflight."
+description: "Use when planning, drafting, restructuring, reviewing, rendering, or packaging an anonymous CUMCM paper, especially when a current-year notice or a supplied cumcmthesis template controls the result."
 ---
 
-# CUMCM Paper Writing - Router
+# CUMCM Paper Writing
 
-This skill follows a static-core plus dynamic-fragments design modeled on the
-local nature-skills-main project. The router keeps default context small:
-contest rules, evidence guidance, and preflight checks are loaded on demand.
-Treat the current year's official notice and format specification as
-authoritative; use the bundled 2026 baseline only when no newer rule is supplied.
+## Overview
 
-## Route the task
+Produce a source-grounded competition paper whose claims, code, figures, layout, and submission files agree. Apply the current official notice and a supplied template before generic writing conventions.
 
-Follow these steps every time this skill is invoked.
+## Route the request
 
-### 1. Load the manifest and core
+1. Read `manifest.yaml` and every `always_load` file.
+2. Detect task, year, delivery, and language. For a full Chinese electronic paper, normally select `draft-paper`, `restructure`, `preflight`, `rendered`, `electronic`, and `zh`.
+3. Apply authorities in this order:
+   - current-year official notice and format specification;
+   - user-supplied class/style/example files;
+   - bundled year baseline;
+   - general academic-writing advice.
+4. When a `CUMCMThesis` or `cumcmthesis` folder is supplied, inspect its README, example source, class, and year style; then read `references/cumcmthesis-template.md`.
+5. When the deliverable is PDF, formulas render incorrectly, or a reproducible LaTeX build is requested, read `references/latex-production-workflow.md`. Use the actual template and XeLaTeX; never flatten structured mathematics into formula-shaped text.
 
-Read manifest.yaml and every file listed under always_load. The manifest
-declares the supported axes and the file paths for each selected fragment.
+## Evidence gate
 
-### 2. Detect the request axes
+Before drafting, lock one sentence:
 
-Classify and state one short line with:
+> In [problem context], we answer [question] using [model/algorithm], supported by [data, derivation, code, or citation], within [assumptions and identifiable boundary].
 
-- task: plan, draft-section, draft-paper, restructure, audit, preflight, or
-  submission-package.
-- year: the named year, or current when the official year is not supplied.
-- delivery: source, rendered, electronic, physical, or both.
-- language: normally zh for a Chinese request; preserve canonical English
-  algorithm and method names.
-- problem/group/stage: selected problem (A-E when applicable), undergraduate
-  group, and physical/electronic stage.
+Record each material claim in the evidence ledger as `VERIFIED`, `UNVERIFIED`, or `AUTHOR_INPUT_NEEDED`. Never invent observations, parameters, citations, team facts, validation scores, capacities, blind-test outcomes, or runtime claims. Keep fitted and extrapolated results visually distinct from observations.
 
-Ask only when an ambiguity changes the paper structure or submission package.
-If the user asks for immediate drafting, proceed with explicit placeholders.
+## Paper contract
 
-### 3. Load only the selected fragments
+Build the shortest sufficient chain:
 
-Read the mapped task, delivery, and language fragments. Read on-demand
-references only when their conditions in the manifest are met:
+problem restatement -> problem analysis -> assumptions -> notation -> model formulation -> solution -> results -> validation/sensitivity -> model evaluation -> conclusions/limitations -> AI-use statement -> references -> appendix.
 
-- exact year rules -> references/requirements.md;
-- full outline -> references/paper-structure.md;
-- claim provenance or reproducibility -> references/evidence-ledger.md;
-- final PDF/Word/archive check -> references/preflight.md;
-- exact Chinese labels/declarations -> references/chinese-quick-reference.md.
+- Draft the abstract after results are fixed; keep title, abstract, and keywords on electronic page 1.
+- Put each result beside its method and evidence. Number and reference equations, tables, and figures consistently.
+- Use figures for patterns and comparisons, tables for exact lookup, and three-line tables when the supplied template does.
+- Give every figure/table a neutral caption, units or denominator, and enough source/scope context to prevent overclaiming.
+- Keep complete runnable code, a support-file list, and reproduction commands in the appendix/support archive.
 
-Do not read every reference file. This is part of the token-efficiency
-contract.
+## Submission gate
 
-### 4. Apply the evidence gate
+For 2026 electronic delivery, read `references/requirements.md`, `references/chinese-quick-reference.md`, and `references/preflight.md`. Exclude consent and numbering pages, omit the table of contents, start Arabic footer numbering at 1 on the abstract page, remove identity from text/metadata/archive paths, and place the applicable AI-use statement before references.
 
-Before long prose, establish a claim-evidence-boundary record:
+Return the required status from `static/core/output-format.md`. Do not claim readiness until the rendered PDF and support archive pass visual, size, anonymity, code, figure, and cross-file consistency checks.
 
-> In [problem context], we answer [question] using [model/algorithm],
-> supported by [evidence], within [assumptions and boundary].
+## Quick reference
 
-For each material claim, record its evidence/source, derivation or code
-location, scope, and status: VERIFIED, UNVERIFIED, or AUTHOR_INPUT_NEEDED.
-Do not invent observations, coefficients, model outputs, citations, team
-facts, validation scores, or runtime claims. Use an explicit author-input
-placeholder for missing Chinese inputs and [MISSING: ...] for missing English
-inputs.
+| Need | Read |
+| --- | --- |
+| Exact year limits and submission rules | `references/requirements.md` |
+| Full paper architecture | `references/paper-structure.md` |
+| Supplied `cumcmthesis` layout | `references/cumcmthesis-template.md` |
+| LaTeX PDF, formula fidelity, and support packaging | `references/latex-production-workflow.md` |
+| Claim provenance | `references/evidence-ledger.md` |
+| Final rendered/package check | `references/preflight.md` |
 
-### 5. Build and draft the paper map
+## Common failures
 
-Use the shortest sufficient chain:
-
-problem restatement -> assumptions -> notation -> model formulation ->
-solution/algorithm -> results -> validation/sensitivity ->
-conclusions/limitations -> references -> appendix.
-
-Define every symbol and unit before reuse. Keep each paragraph focused on one
-job. Put a result beside the method and evidence that support it. Draft the
-abstract after the result ledger is stable; never add unsupported numbers to
-the abstract or conclusion.
-
-### 6. Enforce contest boundaries
-
-Apply the selected year's official notice. The bundled 2026 baseline uses
-white A4, margins of at least 2.5 cm, an abstract-only first electronic page,
-no table of contents, a body limit of no more than 30 pages, and an appendix
-with the file list and complete runnable source programs. The electronic paper
-is one uncompressed PDF/Word file within the selected 20MB limit; supporting
-files are one anonymous ZIP/RAR within the selected 20MB limit.
-
-Separate physical and electronic packages:
-
-- physical-only consent and numbering pages stay out of electronic files;
-- anonymous sections, metadata, filenames, archive paths, and code comments
-  must not reveal contestant, institution, or division;
-- current-year entry and AI-use notices override this baseline when supplied;
-- unspecified font, size, line spacing, and color must not be invented as
-  universal contest rules.
-
-### 7. Return the mode-specific contract
-
-Use static/core/output-format.md. Every result must include assumptions or
-missing inputs and a status of ready, ready_with_author_checks, or blocked.
-Use ready_with_author_checks when author verification, official notice
-confirmation, citation verification, code execution, rendered-layout
-inspection, or file-size checking remains.
-
-### 8. Run preflight before claiming completion
-
-For final or submission-related work, read references/preflight.md, inspect
-the rendered artifact when layout is in scope, and report PASS, FAIL, or
-AUTHOR CHECK for each check group. A paper is not ready merely because its
-Markdown or LaTeX source looks complete.
-
-## Revision rule
-
-When the author flags a paragraph or result, make a targeted edit and preserve
-unflagged material. Return to the alignment gate only if the correction
-changes the central claim, section architecture, or evidence boundary.
+- Copying a sample template's demonstration text, identity fields, or decorative boxes into the competition paper.
+- Calling observed `d(c)` values a system rerun or causal policy effect.
+- Using full-grid tables when the selected template expects three-line tables.
+- Omitting figure captions, denominators, AI-use disclosure, complete code, or support-file inventory.
+- Treating a successful source build as proof that the final PDF is readable.
+- Replacing `\sum`, `\frac`, subscripts, or superscripts with `_()`, `^()`, or other plain-text approximations.

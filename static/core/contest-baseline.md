@@ -10,6 +10,9 @@ notice or division rule override it.
 - Page numbering starts at Arabic 1 on the abstract page and is centered in the
   footer. No table of contents. Body target/limit is no more than 30 pages in
   the 2026 baseline; appendix is not included in that body limit.
+- When the supplied 2026 `cumcmthesis` template controls layout, use centered
+  bold major headings, left-aligned bold subheadings, three-line tables with
+  captions above, and figure captions below.
 - Electronic paper: one uncompressed PDF or Word file, preferably PDF, <=20 MB;
   exclude the physical consent and numbering pages, so the abstract is page 1.
 - Supporting material: one anonymous ZIP/RAR <=20 MB containing needed
@@ -19,3 +22,5 @@ notice or division rule override it.
   in references/chinese-quick-reference.md.
 - Anonymous sections must not reveal contestant, institution, or division.
   Current-year AI-use and entry notices are separate authority checks.
+- A supplied 2026 AI-use rule requires a truthful statement before references
+  and, when AI is used, an anonymous detail PDF in supporting materials.

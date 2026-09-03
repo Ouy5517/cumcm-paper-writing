@@ -2,6 +2,11 @@
 
 Source basis: the local converted copies of the 2026 revision, checked against the 2019 revision and 2025 revision. A newer official CUMCM notice, a division requirement, or the user's supplied template overrides this baseline.
 
+When the user supplies a local `CUMCMThesis` template, use its class/style/example
+for unspecified typography, heading, table, figure, and keyword conventions;
+do not copy sample content, identity placeholders, advertisements, or decorative
+demonstration boxes into the paper.
+
 ## Current baseline: 2026 revision
 
 ### Physical-paper package
@@ -34,6 +39,13 @@ Source basis: the local converted copies of the 2026 revision, checked against t
 - Cite every external or public source, including online sources, at the point of use and in a standard scientific reference list. Never invent references or claim unsupported results.
 - Font family, font size, line spacing, and color are not globally prescribed by this baseline. Apply a supplied template or division-specific rule when one exists.
 
+### 2026 AI-use rule when supplied with the entry package
+
+- Put exactly one applicable AI-use statement before the reference list.
+- If AI was used, state the bounded purposes and include an anonymous PDF named `AI工具使用详情.pdf` in supporting materials.
+- The detail file records tool/model, dates, task stages, representative prompting approach, adoption/modification, and human verification. It must agree with the paper statement and must not contain team or school identity.
+- Do not claim that AI was unused when AI participated in analysis, code, visualization, drafting, editing, or verification.
+
 ## Version differences to check
 
 | Version | Important difference |
@@ -56,6 +68,7 @@ Before producing the final paper, verify:
 - [ ] Consent and numbering pages are excluded from electronic paper and supporting archive.
 - [ ] No contestant/school/division identifiers occur in anonymous sections, metadata, filenames, code comments, or archives.
 - [ ] All cited sources have in-text markers and reference-list entries.
+- [ ] The applicable 2026 AI-use statement appears before references and agrees with `AI工具使用详情.pdf` when AI was used.
 - [ ] Appendix contains the supporting-material list and runnable source code, or the exact no-program declaration.
 - [ ] Supporting archive is one anonymous ZIP/RAR <=20 MB; electronic paper is one uncompressed PDF/Word <=20 MB.
 - [ ] Paper results, code, data, and supporting files are mutually consistent.

@@ -7,8 +7,9 @@ the scope.
 ## 1. Intake
 
 Record year, contest/group, problem, language, paper stage, output artifact,
-and whether the target is physical, electronic, or both. Load only the
-references selected by the manifest.
+and whether the target is physical, electronic, or both. Record any supplied
+template folder and its compiler requirements. Load only the references
+selected by the manifest.
 
 ## 2. Alignment gate
 
@@ -40,7 +41,10 @@ problem restatement -> assumptions -> notation -> model -> solution/algorithm
 
 Place a result beside its method and evidence. Explain why each assumption,
 variable, objective, constraint, algorithm, and evaluation metric is needed.
-Use equations and tables consistently; define every symbol before reuse.
+Use equations, figures, and tables consistently; define every symbol before
+reuse. Prefer three-line tables when the selected template does, and use
+figure captions that state metric, denominator, scope, and observation versus
+fit/extrapolation status.
 
 ## 6. Reproducibility and citations
 
@@ -52,9 +56,16 @@ citation merely to decorate a paragraph.
 
 Keep the physical package and electronic package as separate deliverables.
 The electronic paper starts with the abstract page and excludes physical-only
-pages. The appendix and its file list belong in the electronic paper.
+pages. The appendix and its file list belong in the electronic paper. Put the
+applicable current-year AI-use statement before references and any required
+detail file in the support archive.
 
 ## 8. QA and targeted revision
+
+When generating a LaTeX PDF or correcting formula rendering, load
+`references/latex-production-workflow.md`. Preserve structured math, compile the
+actual template twice, render every PDF page, and inspect the exact support
+archive before assigning submission status.
 
 Run terminology, claim repetition, anonymity, page order, page count, file
 size, reference, code, and archive checks. On revision, edit only the flagged
