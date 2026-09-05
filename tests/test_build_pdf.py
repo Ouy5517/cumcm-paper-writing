@@ -30,7 +30,8 @@ class BuildTests(unittest.TestCase):
 
             with patch.object(builder.shutil, 'which', return_value='xelatex'), patch.object(builder.subprocess, 'run', side_effect=compiler):
                 if mode == 'success':
-                    builder.build(source, output)
+                    # An ordinary template directory need not contain CUMCM files.
+                    builder.build(source, output, template=root)
                     self.assertEqual(output.read_bytes(), b'%PDF-new')
                     self.assertEqual(len(calls), 2)
                 else:
@@ -55,5 +56,5 @@ class BuildTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             source = Path(directory) / 'paper.tex'
             source.touch()
-            with self.assertRaisesRegex(FileNotFoundError, 'cumcmthesis.cls'):
-                builder.build(source, source.with_suffix('.pdf'), directory)
+            with self.assertRaisesRegex(FileNotFoundError, 'Template directory'):
+                builder.build(source, source.with_suffix('.pdf'), Path(directory) / 'missing')

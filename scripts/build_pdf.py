@@ -17,12 +17,12 @@ def build(source, output, template=None, engine='xelatex'):
     env['PATH'] = os.pathsep.join(p for p in env.get('PATH', '').split(os.pathsep) if Path(p).is_dir())
     if template:
         template = Path(template).resolve()
-        if not (template / 'cumcmthesis.cls').is_file():
-            raise FileNotFoundError('Template directory must contain cumcmthesis.cls')
+        if not template.is_dir():
+            raise FileNotFoundError('Template directory does not exist')
         env['TEXINPUTS'] = str(template) + os.pathsep + env.get('TEXINPUTS', '')
     executable = shutil.which(engine, path=env['PATH'])
     if not executable:
-        raise FileNotFoundError('XeLaTeX unavailable: install it or supply --engine')
+        raise FileNotFoundError(f'Compiler {engine} unavailable: install it or supply --engine')
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='cumcm-build-', dir=output.parent) as directory:
         work = Path(directory)

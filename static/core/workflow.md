@@ -1,72 +1,14 @@
 # Core workflow
 
-Run this workflow for a full paper, major rewrite, or submission audit. For a
-short section edit, keep the same evidence and terminology checks but narrow
-the scope.
+For full papers: select contest/year and read references/contest-profile.md;
+map requirements with references/problem-coverage.md; audit available data;
+select models and checks using references/model-validation.md; execute analysis;
+record evidence before drafting; produce a concise question-to-result narrative.
+Apply only verified profile-specific format and identity rules.
 
-## 1. Intake
-
-Record year, contest/group, problem, language, paper stage, output artifact,
-and whether the target is physical, electronic, or both. Record any supplied
-template folder and its compiler requirements. Load only the references
-selected by the manifest.
-
-## 2. Alignment gate
-
-Before long prose, state the one-sentence argument:
-
-> In [problem context], we answer [question] using [model/algorithm],
-> supported by [evidence], within [assumptions and boundary].
-
-Then state the section map, locked terminology, leading result, and inferred
-assumptions. Ask at most 2–3 high-leverage questions only when the missing
-answer changes the paper's structure. If the user wants immediate progress,
-produce a scaffold with explicit placeholders.
-
-## 3. Evidence ledger
-
-For each major claim, record: claim, source/evidence, derivation or code
-location, scope/boundary, status, and where it will appear. Keep contest raw
-data, author-collected data, public sources, derived results, and assumptions
-distinguishable.
-
-## 4. Paper map
-
-Map each section to one job and build the shortest sufficient argument chain:
-problem restatement -> assumptions -> notation -> model -> solution/algorithm
--> results -> validation/sensitivity -> conclusions/limitations -> references
--> appendix.
-
-## 5. Draft from evidence outward
-
-Place a result beside its method and evidence. Explain why each assumption,
-variable, objective, constraint, algorithm, and evaluation metric is needed.
-Use equations, figures, and tables consistently; define every symbol before
-reuse. Prefer three-line tables when the selected template does, and use
-figure captions that state metric, denominator, scope, and observation versus
-fit/extrapolation status.
-
-## 6. Reproducibility and citations
-
-Make result statements agree with executable code and supporting files. Cite
-external sources at the point of use and in the reference list. Never add a
-citation merely to decorate a paragraph.
-
-## 7. Submission separation
-
-Keep the physical package and electronic package as separate deliverables.
-The electronic paper starts with the abstract page and excludes physical-only
-pages. The appendix and its file list belong in the electronic paper. Put the
-applicable current-year AI-use statement before references and any required
-detail file in the support archive.
-
-## 8. QA and targeted revision
-
-When generating a LaTeX PDF or correcting formula rendering, load
-`references/latex-production-workflow.md`. Preserve structured math, compile the
-actual template twice, render every PDF page, and inspect the exact support
-archive before assigning submission status.
-
-Run terminology, claim repetition, anonymity, page order, page count, file
-size, reference, code, and archive checks. On revision, edit only the flagged
-claim/paragraph unless a structural change is explicitly confirmed.
+For generation/revision read references/artifact-consistency.md. Set one
+canonical source and regenerate affected dependencies together. Read
+references/code-appendix.md to select and verify concise code presentation.
+Keep build success, scientific validation, task coverage and submission checks
+separate. For local edits run the relevant subset. Existing user authorization
+persists; routine implementation does not require repeated confirmations.

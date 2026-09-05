@@ -5,6 +5,12 @@ notation must remain typeset, or when a `CUMCMThesis`/`cumcmthesis` template is
 available. This workflow turns verified paper content into a reproducible,
 anonymous submission artifact; it is not a substitute for evidence validation.
 
+Apply contest-profile.md first. The CUMCM class/style example below applies only
+when selected. Other templates may use article, ctexart or supplied classes.
+Identity policy, front matter and supporting-file requirements come from the
+profile. Code selection follows code-appendix.md; complete code stays in the
+engineering project even when omitted from the paper.
+
 ## Inputs and outputs
 
 Required inputs:
@@ -18,7 +24,7 @@ Required outputs:
 - `paper.tex`, the authoritative typesetting source;
 - `paper.pdf`, compiled from that source;
 - complete source code, generated figures, reproduction commands, and any
-  required AI-use detail PDF in an anonymous support archive;
+  required disclosure files in the profile's permitted delivery form;
 - a verification record with build, page, visual, anonymity, and hash results.
 
 ## 1. Inspect and stage the template

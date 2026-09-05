@@ -1,5 +1,5 @@
 # Electronic delivery
 
-Produce one anonymous paper file beginning with the abstract page and one
-anonymous ZIP/RAR support archive when needed. Check the current size limits
-and ensure physical-only pages are excluded.
+Use the selected contest profile for front matter, permitted identities,
+file formats, page limits, disclosures and supporting artifacts. Verify actual
+outputs and include only the files required or permitted by those instructions.

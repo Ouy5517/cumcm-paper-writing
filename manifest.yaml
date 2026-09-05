@@ -1,7 +1,7 @@
 name: cumcm-paper-writing
-version: 0.4.1
+version: 0.5.0
 description: >
-  Declarative routing for source-grounded, template-aware CUMCM paper
+  Declarative routing for source-grounded, contest-aware modeling paper
   planning, drafting, rendering, review, and submission preflight.
 
 always_load:
@@ -10,6 +10,15 @@ always_load:
   - static/core/output-format.md
 
 axes:
+  contest:
+    detect: Select the named contest; unknown contests use generic. The actual year is case metadata, not a global CUMCM selector.
+    values:
+      generic: references/contest-profile.md
+      cumcm: references/contest-profile.md
+      mcm-icm: references/contest-profile.md
+      course: references/contest-profile.md
+    default: generic
+    multi: false
   task:
     detect: |
       Choose one or more modes from plan, draft-section, draft-paper,
@@ -25,19 +34,6 @@ axes:
       submission-package: static/fragments/task/submission-package.md
     default: plan
     multi: true
-
-  year:
-    detect: |
-      Use the year named by the user or the supplied official notice. Use
-      current when the year is not known; never combine limits or declarations
-      from different years.
-    values:
-      current: references/year-selection.md
-      "2026": references/years/2026.md
-      "2025": references/years/2025.md
-      "2019": references/years/2019.md
-    default: current
-    multi: false
 
   delivery:
     detect: |
@@ -64,11 +60,19 @@ axes:
 
 references:
   on_demand:
+    - condition: drafting or auditing a complete competition solution
+      path: references/problem-coverage.md
+    - condition: formulating or validating descriptive, predictive, optimization or simulation models
+      path: references/model-validation.md
+    - condition: generating or revising manuscript, figures, code and submission artifacts
+      path: references/artifact-consistency.md
+    - condition: including or shortening code appendices
+      path: references/code-appendix.md
     - condition: a PDF must be generated with LaTeX, formulas render incorrectly, or a reproducible XeLaTeX build and support package is required
       path: references/latex-production-workflow.md
     - condition: a CUMCMThesis/cumcmthesis class, style, example, or local template folder is supplied
       path: references/cumcmthesis-template.md
-    - condition: exact current-year format, page, file-size, anonymity, or appendix rule is needed
+    - condition: CUMCM only and historical rule pointers are needed; verify original sources before enforcement
       path: references/requirements.md
     - condition: planning or drafting a full paper structure
       path: references/paper-structure.md
@@ -76,5 +80,5 @@ references:
       path: references/evidence-ledger.md
     - condition: final PDF/Word or archive submission readiness is being checked
       path: references/preflight.md
-    - condition: a Chinese wording, declaration, or format label is required
+    - condition: CUMCM only and verified Chinese declaration wording is needed
       path: references/chinese-quick-reference.md

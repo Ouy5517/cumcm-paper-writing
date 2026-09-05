@@ -1,4 +1,4 @@
 interface:
-  display_name: "CUMCM Paper Writing"
-  short_description: "Generate CUMCM-compliant papers"
-  default_prompt: "Use $cumcm-paper-writing to draft or review a CUMCM paper."
+  display_name: "Modeling Competition Paper Writing"
+  short_description: "Draft and verify modeling competition papers"
+  default_prompt: "Use $cumcm-paper-writing for a contest-aware paper with validated models and concise code appendices."

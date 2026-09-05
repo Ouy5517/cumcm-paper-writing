@@ -1,82 +1,56 @@
-# CUMCM Paper Writing
+# Mathematical Modeling Competition Paper Writing
 
-A source-grounded Codex Skill for planning, drafting, reviewing, formatting,
-and packaging papers for the China Undergraduate Mathematical Contest in
-Modeling (CUMCM).
+A contest-aware paper workflow for CUMCM, MCM/ICM, other mathematical modeling
+competitions and course exercises. The existing name `cumcm-paper-writing`
+is retained for installation compatibility; version 0.5.0 introduces generic
+profiles rather than universal CUMCM rules.
 
-## What it does
+## Use
 
-- Routes requests by task, contest year, delivery format, and language.
-- Supports planning, section drafting, full-paper drafting, restructuring,
-  audit, preflight, and submission-package preparation.
-- Separates physical-paper and electronic-submission requirements.
-- Enforces claim/evidence/boundary tracking and prevents fabricated results,
-  citations, team facts, or validation.
-- Covers anonymity, reproducible source programs, appendices, references, and
-  supporting ZIP/RAR archives.
-- Applies supplied `CUMCMThesis` class/style/example conventions, including
-  three-line tables, numbered figures, and current-year AI-use placement.
-- Provides a reproducible `paper.tex` → XeLaTeX → PDF workflow with formula
-  fidelity checks, every-page rendering, anonymity scans, and SHA256 recording.
-- Loads detailed references on demand to keep context usage small.
+Install this directory under your agent's skills directory and invoke
+`$cumcm-paper-writing`. Provide the contest, year, problem, data and any official
+instructions. Unverified rules stay explicitly unresolved.
 
-## Installation
+Example: “使用 $cumcm-paper-writing，按课程作业要求撰写论文，附录仅保留核心算法，完整代码单独交付。”
 
-Copy this directory into the Codex skills directory:
+## Workflow
 
-    %CODEX_HOME%\skills\cumcm-paper-writing
+- [Contest profile](references/contest-profile.md): front matter, page-count scope,
+  identity, disclosure, support files and code policy.
+- [Problem coverage](references/problem-coverage.md): one status per requested output.
+- [Model validation](references/model-validation.md): descriptive/predictive/
+  optimization/simulation checks and evidence boundaries.
+- [Artifact consistency](references/artifact-consistency.md): one authoritative
+  manuscript, generated figures, code and reproducible build record.
+- [Code appendix](references/code-appendix.md): full/core/none/unresolved policy;
+  concise readable excerpts from tested source without losing complete code.
 
-If CODEX_HOME is not set, use:
+Historical CUMCM rules are research pointers requiring original-source checks.
+No universal page limit, anonymity requirement or mandatory full-code appendix
+is asserted for all contests. Templates are external prerequisites.
 
-    %USERPROFILE%\.codex\skills\cumcm-paper-writing
+## Validation
 
-## Usage
-
-Invoke it explicitly with:
-
-    $cumcm-paper-writing
-
-For a final paper or submission check, provide the contest year and the
-current official notice when available. The official notice and
-division-specific requirements override the bundled baseline.
-
-For PDF generation, also provide the `CUMCMThesis` template directory when it
-is not already in the project. The workflow expects XeLaTeX (MiKTeX or TeX Live),
-Poppler tools such as `pdfinfo` and `pdftoppm`, and the project's analysis/test
-runtime. It produces `paper.tex`, `paper.pdf`, rendered QA pages, a support
-archive, and verification hashes.
-
-## Project layout
-
-    SKILL.md                 Router and core behavior
-    manifest.yaml            Axis detection and lazy-loading map
-    static/core/             Shared stance, workflow, output, and baseline
-    static/fragments/        Task, delivery, and language fragments
-    references/              Detailed rules, LaTeX workflow, evidence, and preflight
-    tests/                   Skill workflow contract tests
-    agents/openai.yaml       Codex UI metadata
-
-## Scope
-
-### Validation and build tools
-
-```powershell
+```sh
 python -m pip install -r requirements-dev.txt
 python scripts/validate_skill.py
 python -m unittest discover -s tests -v
-python scripts/build_pdf.py path/to/paper.tex --output path/to/paper.pdf --template-dir path/to/CUMCMThesis
+python scripts/build_pdf.py path/to/paper.tex --output path/to/paper.pdf
 ```
 
-The builder requires XeLaTeX on PATH (or `--engine`), resolves figures relative
-to the TeX directory, checks two compilation passes, and preserves an existing
-PDF on failure. Visual and scientific validation remain separate checks.
-Historical competition limits are unverified notes until tied to the selected
-year's original notice; see [year selection](references/year-selection.md).
+The compiler defaults to XeLaTeX; `--engine` selects another compatible executable.
+Use `--template-dir` for a directory of template files. Build failures preserve
+existing output. Bibliographies needing BibTeX/Biber require a separate documented
+build workflow; this two-pass helper is not a complete bibliography orchestrator.
+Visual/scientific checks remain separate from compilation tests.
 
-The student-advisor example integration currently has design and implementation
-plans only. Its data and runnable case have not yet been published in this repo.
+## Layout and example
 
-This is a writing and quality-control workflow, not an official contest
-template or legal interpretation. Authors remain responsible for checking the
-current notice, division rules, data permissions, code execution, and the final
-rendered files before submission.
+`SKILL.md` routes tasks; `manifest.yaml` maps references; `static/` holds common
+and task/delivery guidance; `references/` holds focused rules; `scripts/` and
+`tests/` hold executable tools and verification. CI runs metadata and unit checks.
+
+The student-advisor case is maintained separately at
+[student_advisor_case](https://github.com/Ouy5517/student_advisor_case).
+Its reviewed limitations are recorded in the artifact-consistency reference.
+This repository does not bundle its raw data or promise its paper is fully validated.

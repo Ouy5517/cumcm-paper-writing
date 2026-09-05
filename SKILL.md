@@ -1,9 +1,16 @@
 ---
 name: cumcm-paper-writing
-description: "Use when planning, drafting, restructuring, reviewing, rendering, or packaging an anonymous CUMCM paper, especially when a current-year notice or a supplied cumcmthesis template controls the result."
+description: "Use when drafting, reviewing, rendering or packaging mathematical modeling competition papers for CUMCM, MCM/ICM, other contests or course exercises, including model validation and concise code appendices."
 ---
 
 # CUMCM Paper Writing
+
+The installed name is retained for compatibility. This workflow is contest-neutral.
+Read references/contest-profile.md before applying formatting or submission rules.
+Only verified rules for the selected contest and year are binding; historical
+CUMCM notes are not defaults for other contests. Read references/problem-coverage.md
+and references/model-validation.md for full papers. For production and revision,
+read references/artifact-consistency.md and references/code-appendix.md.
 
 ## Overview
 
@@ -12,7 +19,7 @@ Produce a source-grounded competition paper whose claims, code, figures, layout,
 ## Route the request
 
 1. Read `manifest.yaml` and every `always_load` file.
-2. Detect task, year, delivery, and language. Select `restructure` only for an existing manuscript revision. State the selection briefly; read every matching file in `axes.*.values`, deduplicating paths. Apply core evidence constraints, selected task, year rules, delivery requirements, then language guidance.
+2. Detect contest, task, delivery and language; record the actual year separately. Select `restructure` only for an existing manuscript revision. Read every matching fragment, deduplicating paths. Unknown contests use generic. Year-specific historical CUMCM references are loaded only for CUMCM.
    Unknown year remains unresolved: read `references/year-selection.md`; never infer an official rule from the current calendar year.
 3. Apply authorities in this order:
    - current-year official notice and format specification;
@@ -36,15 +43,15 @@ Build the shortest sufficient chain:
 
 problem restatement -> problem analysis -> assumptions -> notation -> model formulation -> solution -> results -> validation/sensitivity -> model evaluation -> conclusions/limitations -> AI-use statement -> references -> appendix.
 
-- Draft the abstract after results are fixed; keep title, abstract, and keywords on electronic page 1.
+- Draft the abstract after results are fixed; place title, summary, keywords and other front matter as the selected profile requires.
 - Put each result beside its method and evidence. Number and reference equations, tables, and figures consistently.
 - Use figures for patterns and comparisons, tables for exact lookup, and three-line tables when the supplied template does.
 - Give every figure/table a neutral caption, units or denominator, and enough source/scope context to prevent overclaiming.
-- Keep complete runnable code, a support-file list, and reproduction commands in the appendix/support archive.
+- Retain complete runnable code in the engineering project. Select full/core/no code listings using references/code-appendix.md and verified contest rules.
 
 ## Submission gate
 
-For electronic delivery, read the selected year profile and `references/preflight.md`. Apply only verified year-specific limits and declarations. Read `references/chinese-quick-reference.md` when exact wording is needed and verify it against the selected notice. Keep the electronic artifact anonymous. Historical summaries are research pointers, not independent authorities.
+For electronic delivery read `references/preflight.md` and the contest profile. Apply its verified page, identity, disclosure and supporting-file rules. Chinese CUMCM declarations apply only to a verified CUMCM requirement.
 
 Return the required status from `static/core/output-format.md`. Do not claim readiness until the rendered PDF and support archive pass visual, size, anonymity, code, figure, and cross-file consistency checks.
 

@@ -25,3 +25,8 @@ paper.
 Return: Submission readiness:, a deliverable matrix, failed checks, author
 checks, cross-file consistency results, and next actions. Use one status:
 ready, ready_with_author_checks, or blocked.
+
+Report separately: task coverage (complete/partial), scientific validation
+(passed/limited/unverified), rendering checks and package compliance. A ready
+format does not override incomplete required results. State the chosen code
+appendix policy and any unresolved rule authority.

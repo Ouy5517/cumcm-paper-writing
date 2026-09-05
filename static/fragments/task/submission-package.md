@@ -1,5 +1,5 @@
-# Submission-package mode
+# Submission package
 
-Construct a matrix for physical paper, electronic paper, and supporting
-archive. Exclude physical-only pages from electronic files. Never fabricate
-team identity, division, metadata, citations, or code contents.
+Build a profile-based deliverable matrix for the paper, code, data, supplements,
+letters or printed materials actually requested. Record each check and its
+source. Do not invent identities, required forms or execution evidence.

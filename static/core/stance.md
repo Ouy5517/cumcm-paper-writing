@@ -20,6 +20,6 @@ writing advice.
   unsupported first, optimal, universal, or proves claims.
 - Preserve failed approaches, sensitivity limits, and model applicability
   boundaries when they affect interpretation.
-- Treat the abstract, main text, appendix, electronic file, archive, metadata,
-  filenames, and code comments as anonymous unless the physical format
-  explicitly requires identity fields.
+- Apply identity/anonymity rules from the selected contest profile to text,
+  metadata, filenames and code. Do not assume course work and all contests
+  share the anonymous CUMCM submission convention.
