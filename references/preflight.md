@@ -2,6 +2,10 @@
 
 Run these checks on the selected year and record PASS, FAIL, or AUTHOR CHECK.
 
+Resolve binding rules through year-selection.md and the selected year profile.
+The layout details below are historical checklist candidates. Mark any item
+whose original authority has not been inspected AUTHOR CHECK rather than PASS.
+
 ## Content and structure
 
 - One abstract-only page with title, abstract, and keywords.

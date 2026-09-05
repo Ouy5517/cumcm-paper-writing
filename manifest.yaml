@@ -1,5 +1,5 @@
 name: cumcm-paper-writing
-version: 0.4.0
+version: 0.4.1
 description: >
   Declarative routing for source-grounded, template-aware CUMCM paper
   planning, drafting, rendering, review, and submission preflight.
@@ -8,7 +8,6 @@ always_load:
   - static/core/stance.md
   - static/core/workflow.md
   - static/core/output-format.md
-  - static/core/contest-baseline.md
 
 axes:
   task:
@@ -33,10 +32,10 @@ axes:
       current when the year is not known; never combine limits or declarations
       from different years.
     values:
-      current: null
-      "2026": references/requirements.md
-      "2025": references/requirements.md
-      "2019": references/requirements.md
+      current: references/year-selection.md
+      "2026": references/years/2026.md
+      "2025": references/years/2025.md
+      "2019": references/years/2019.md
     default: current
     multi: false
 

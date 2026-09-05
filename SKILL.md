@@ -12,14 +12,15 @@ Produce a source-grounded competition paper whose claims, code, figures, layout,
 ## Route the request
 
 1. Read `manifest.yaml` and every `always_load` file.
-2. Detect task, year, delivery, and language. For a full Chinese electronic paper, normally select `draft-paper`, `restructure`, `preflight`, `rendered`, `electronic`, and `zh`.
+2. Detect task, year, delivery, and language. Select `restructure` only for an existing manuscript revision. State the selection briefly; read every matching file in `axes.*.values`, deduplicating paths. Apply core evidence constraints, selected task, year rules, delivery requirements, then language guidance.
+   Unknown year remains unresolved: read `references/year-selection.md`; never infer an official rule from the current calendar year.
 3. Apply authorities in this order:
    - current-year official notice and format specification;
    - user-supplied class/style/example files;
    - bundled year baseline;
    - general academic-writing advice.
 4. When a `CUMCMThesis` or `cumcmthesis` folder is supplied, inspect its README, example source, class, and year style; then read `references/cumcmthesis-template.md`.
-5. When the deliverable is PDF, formulas render incorrectly, or a reproducible LaTeX build is requested, read `references/latex-production-workflow.md`. Use the actual template and XeLaTeX; never flatten structured mathematics into formula-shaped text.
+5. For LaTeX PDF delivery or formula repair, read `references/latex-production-workflow.md`. If LaTeX is explicitly requested, missing dependencies must be reported with the preserved source; do not silently switch renderers. Otherwise choose a math-capable renderer compatible with the requested format. Never flatten structured mathematics into formula-shaped text.
 
 ## Evidence gate
 
@@ -43,7 +44,7 @@ problem restatement -> problem analysis -> assumptions -> notation -> model form
 
 ## Submission gate
 
-For 2026 electronic delivery, read `references/requirements.md`, `references/chinese-quick-reference.md`, and `references/preflight.md`. Exclude consent and numbering pages, omit the table of contents, start Arabic footer numbering at 1 on the abstract page, remove identity from text/metadata/archive paths, and place the applicable AI-use statement before references.
+For electronic delivery, read the selected year profile and `references/preflight.md`. Apply only verified year-specific limits and declarations. Read `references/chinese-quick-reference.md` when exact wording is needed and verify it against the selected notice. Keep the electronic artifact anonymous. Historical summaries are research pointers, not independent authorities.
 
 Return the required status from `static/core/output-format.md`. Do not claim readiness until the rendered PDF and support archive pass visual, size, anonymity, code, figure, and cross-file consistency checks.
 

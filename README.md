@@ -58,6 +58,24 @@ archive, and verification hashes.
 
 ## Scope
 
+### Validation and build tools
+
+```powershell
+python -m pip install -r requirements-dev.txt
+python scripts/validate_skill.py
+python -m unittest discover -s tests -v
+python scripts/build_pdf.py path/to/paper.tex --output path/to/paper.pdf --template-dir path/to/CUMCMThesis
+```
+
+The builder requires XeLaTeX on PATH (or `--engine`), resolves figures relative
+to the TeX directory, checks two compilation passes, and preserves an existing
+PDF on failure. Visual and scientific validation remain separate checks.
+Historical competition limits are unverified notes until tied to the selected
+year's original notice; see [year selection](references/year-selection.md).
+
+The student-advisor example integration currently has design and implementation
+plans only. Its data and runnable case have not yet been published in this repo.
+
 This is a writing and quality-control workflow, not an official contest
 template or legal interpretation. Authors remain responsible for checking the
 current notice, division rules, data permissions, code execution, and the final

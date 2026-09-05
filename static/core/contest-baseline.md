@@ -1,8 +1,8 @@
 # Compact contest baseline
 
-Use this only as the default 2026 baseline. Load references/requirements.md
-when exact wording or a historical year matters, and let a newer official
-notice or division rule override it.
+This is an UNVERIFIED historical 2026 summary, not an always-loaded default.
+Read references/year-selection.md and verify each applicable rule against the
+selected year's original notice before enforcement.
 
 - Physical package: white A4, all four margins at least 2.5 cm, left binding.
   Physical page 1 is the consent letter; page 2 is the numbering page; page 3

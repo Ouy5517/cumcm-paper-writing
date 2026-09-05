@@ -51,8 +51,8 @@ p_{bk}=\frac{n_{bk}}{N_b^+}.
 \]
 ```
 
-The source must contain `n_{bk}=\sum_i` and `\frac{n_{bk}}{N_b^+}`, not
-plain-text approximations. A converter that emits parenthesized underscore or
+The equation above is an example, not required paper content. Preserve each
+input equation's meaning and mathematical structure. A converter that emits parenthesized underscore or
 caret forms, or Unicode sigma in place of structured mathematics, has failed
 the contract.
 
@@ -68,20 +68,23 @@ Compile in an isolated build directory so auxiliary files do not pollute the
 submission tree. Run xelatex 两次 (two passes) so references, numbering, and
 bookmarks settle; `latexmk -xelatex` is an acceptable equivalent.
 
-Example PowerShell sequence:
+Use the bundled compiler from the skill directory (source assets resolve from
+the TeX source's parent directory):
 
 ```powershell
-$build = Join-Path $PWD 'paper/tmp/latex'
-New-Item -ItemType Directory -Force -Path $build | Out-Null
-xelatex -interaction=nonstopmode -halt-on-error -output-directory=$build paper/paper.tex
-xelatex -interaction=nonstopmode -halt-on-error -output-directory=$build paper/paper.tex
-Copy-Item -LiteralPath (Join-Path $build 'paper.pdf') -Destination 'paper/paper.pdf' -Force
+python scripts/build_pdf.py paper/paper.tex --output paper/paper.pdf --template-dir "$env:CUMCM_TEMPLATE_DIR"
 ```
 
 On Windows, sanitize `PATH` before invoking MiKTeX if it contains entries that
 are files rather than directories. Stop on a nonzero compiler exit, missing
 font/glyph, undefined control sequence/reference, or absent output PDF. Do not
 declare success from the existence of an older PDF.
+
+The compiler uses a fresh temporary directory, checks both exit codes and the
+final log, and atomically replaces the destination only after success. Failed
+builds preserve an existing PDF but never report it as current. This is a build
+gate only; PDF structure, mathematical meaning and visual QA are separate.
+Compile only inspected/trusted TeX; disabling shell escape is not a sandbox.
 
 ## 4. Verify source and PDF
 
@@ -90,6 +93,7 @@ Run source checks before visual review:
 ```powershell
 rg -n 'n_\(|\^\(|Missing character|Undefined control sequence|LaTeX Error' paper
 pdfinfo paper/paper.pdf
+New-Item -ItemType Directory -Force paper/tmp/render | Out-Null
 pdftoppm -png -r 140 paper/paper.pdf paper/tmp/render/page
 ```
 

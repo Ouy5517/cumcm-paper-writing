@@ -14,9 +14,10 @@ For an anonymous electronic paper, the canonical class option is equivalent to:
 
     \documentclass[withoutpreface,bwprint]{cumcmthesis}
 
-If XeLaTeX/latexmk and the required fonts are available, prefer compiling with
-the supplied template. If not, use another renderer only after reproducing the
-observable contract below and recording the fallback in generation notes.
+If LaTeX is requested, compile with the supplied template and XeLaTeX; when
+dependencies are missing, preserve source and report the exact missing input.
+For other delivery requests, a compatible math-capable renderer may be used,
+with its identity and layout limitations recorded.
 
 ## Observable 2026 contract
 
@@ -53,6 +54,6 @@ statement immediately before references. If AI was used, include the anonymous
 
 ## Fallback disclosure
 
-When the template compiler is unavailable, generation notes must identify the
-renderer used and confirm A4 geometry, margins, abstract page, heading hierarchy,
-three-line tables, captions, footer numbering, anonymity, and visual inspection.
+For a permitted alternative renderer, record its identity and verify geometry,
+abstract page, headings, tables, captions, page numbering and math visually.
+An alternative renderer does not satisfy an explicit LaTeX delivery request.

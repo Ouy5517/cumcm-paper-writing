@@ -1,5 +1,10 @@
 # CUMCM paper requirements reference
 
+Verification status: UNVERIFIED historical notes. Read year-selection.md first.
+The numbers and declarations below are not enforceable until their original
+source is identified and checked for the selected year. Official notices outrank
+template conventions; a supplied template cannot override an official rule.
+
 Source basis: the local converted copies of the 2026 revision, checked against the 2019 revision and 2025 revision. A newer official CUMCM notice, a division requirement, or the user's supplied template overrides this baseline.
 
 When the user supplies a local `CUMCMThesis` template, use its class/style/example
