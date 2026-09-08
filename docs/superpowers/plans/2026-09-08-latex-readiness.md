@@ -12,7 +12,7 @@
 
 - The skill remains CUMCM-only; selected-year official authority and supplied template/package rules override all editorial guidance.
 - The current calendar year must never select a CUMCM rule set, and a synthetic PDF fixture cannot establish scientific validity or submission compliance.
-- Missing XeLaTeX, missing template files, failed compiler exits, unresolved log errors, or absent PDFs are explicit `blocked` conditions; no silent renderer fallback is permitted.
+- For LaTeX/PDF delivery, missing XeLaTeX or template files, failed compiler exits, unresolved log errors, or absent PDFs are explicit `blocked` conditions; Word/DOCX and source-only delivery use their own artifact checks and do not require XeLaTeX; no silent renderer fallback is permitted.
 - Preserve two XeLaTeX passes, `-no-shell-escape`, temporary build isolation, log gates, PDF signature validation, and atomic replacement of an older PDF only after a successful build.
 - A `PATH` entry that raises `OSError` or `ValueError` during inspection is skipped while usable entries retain their original order; compiler lookup still fails clearly when no engine is found.
 - Ordinary verification does not require SHA256, MD5, or source hashes; mention hashes only for an inspected selected-year submission rule.
@@ -41,7 +41,8 @@ Append this method to `BuildTests` in `tests/test_build_pdf.py`:
             root = Path(directory)
             source, output = root / 'paper.tex', root / 'paper.pdf'
             source.write_text('test source', encoding='utf-8')
-            restricted = r'C:\Users\14564\AppData\Local\Microsoft\WindowsApps'
+            restricted = root / 'restricted-path-entry'
+            permission_checks = []
             calls = []
 
             def compiler(command, **kwargs):
@@ -55,19 +56,21 @@ Append this method to `BuildTests` in `tests/test_build_pdf.py`:
             original_is_dir = builder.Path.is_dir
 
             def guarded_is_dir(path):
-                if str(path) == restricted:
+                if Path(path) == restricted:
+                    permission_checks.append(path)
                     raise PermissionError('access denied')
                 return original_is_dir(path)
 
             with patch.object(builder.Path, 'is_dir', guarded_is_dir), \
                  patch.object(builder.shutil, 'which', return_value='xelatex') as which, \
                  patch.object(builder.subprocess, 'run', side_effect=compiler), \
-                 patch.dict(os.environ, {'PATH': os.pathsep.join([restricted, str(root)])}, clear=False):
+                 patch.dict(os.environ, {'PATH': os.pathsep.join([str(restricted), str(root)])}, clear=False):
                 builder.build(source, output)
 
             self.assertEqual(output.read_bytes(), b'%PDF-new')
             self.assertEqual(len(calls), 2)
-            self.assertNotIn(restricted, which.call_args.kwargs['path'])
+            self.assertTrue(permission_checks)
+            self.assertNotIn(str(restricted), which.call_args.kwargs['path'])
 ```
 
 - [ ] **Step 2: Run the focused test and verify RED**
@@ -81,14 +84,14 @@ Expected: `ERROR` with `PermissionError: access denied` from the existing `Path.
 In `scripts/build_pdf.py`, place these functions above `build()` and replace the direct comprehension with `_sanitize_path(env.get('PATH', ''))`:
 
 ```python
-def _path_entry_is_usable(entry):
+def _path_entry_is_usable(entry: str) -> bool:
     try:
         return Path(entry).is_dir()
     except (OSError, ValueError):
         return False
 
 
-def _sanitize_path(path_value):
+def _sanitize_path(path_value: str) -> str:
     return os.pathsep.join(
         entry for entry in path_value.split(os.pathsep)
         if _path_entry_is_usable(entry)
@@ -179,6 +182,15 @@ class EnvironmentReadinessContractTests(unittest.TestCase):
         self.assertIn('cannot claim visual', text)
         self.assertIn('older pdf', text)
 
+    def test_word_delivery_keeps_an_artifact_specific_path(self):
+        rendered = self.read('static/fragments/delivery/rendered.md')
+        electronic = self.read('static/fragments/delivery/electronic.md')
+        preflight = self.read('references/preflight.md')
+        self.assertIn('docx', rendered)
+        self.assertIn('file formats', electronic)
+        self.assertIn('word', rendered)
+        self.assertIn('do not require xelatex', preflight)
+
 
 if __name__ == '__main__':
     unittest.main()
@@ -200,34 +212,39 @@ Create `references/environment-readiness.md` with this content:
 Use this reference for LaTeX engine, template, render, PDF, or submission
 preflight questions. It describes toolchain readiness; it does not replace the
 selected-year official CUMCM notice, supplied template/package, or scientific
-validation.
+validation. Readiness is specific to the requested final artifact; Word/DOCX
+and source-only delivery use their own artifact and renderer checks.
 
 ## Status contract
 
-- `ready`: a fresh build produced the intended PDF, the log and PDF structure
-  checks passed, every page was visually reviewed, anonymity and package checks
-  passed, and the selected-year authority was inspected.
+- `ready`: a fresh requested artifact was produced, its applicable structure
+  and visual checks passed, anonymity and package checks passed, and the
+  selected-year authority was inspected. LaTeX/PDF requires fresh PDF review;
+  Word/DOCX requires fresh DOCX and Word-render review.
 - `ready_with_author_checks`: the build and technical checks are usable, but an
   author-owned item such as the selected-year notice, identity fields,
   disclosure wording, page rule, or support-file allowlist remains unresolved.
-- `blocked`: XeLaTeX or the requested engine, the supplied template, the source,
-  required evidence, or a build gate is unavailable or failed.
+- `blocked`: the requested artifact's engine/template, source, required
+  evidence, or build gate is unavailable or failed. XeLaTeX is required only
+  for LaTeX/PDF delivery.
 
 ## Hard limitations
 
 1. Resolve the selected-year official authority before enforcing page,
    anonymity, disclosure, file-size, date, or support-package rules. The
    current calendar year must not select a CUMCM rule set.
-2. Check the requested engine before rendering. If XeLaTeX is missing, report
-   `blocked` with the platform-specific installation command and preserve the
-   source; do not silently switch to ReportLab, Word, Markdown, or another
-   renderer.
+2. For LaTeX/PDF delivery, check the requested engine before rendering. If
+   XeLaTeX is missing, report `blocked` with the platform-specific installation
+   command and preserve the source; do not silently switch to ReportLab, Word,
+   Markdown, or another renderer.
 3. A missing template or year style is an author input gap, not permission to
    invent a class, page limit, declaration, or layout rule.
-4. A failed build, an absent PDF, or an older PDF left in place is `blocked`.
-   Source compilation alone cannot claim visual pass, table-flow pass,
-   overflow pass, font pass, or submission readiness; those checks are
-   `UNVERIFIED` until a fresh PDF is rendered and inspected.
+4. For LaTeX/PDF delivery, a failed build, an absent PDF, or an older PDF left
+   in place is `blocked`. Source compilation alone cannot claim visual pass,
+   table-flow pass, overflow pass, font pass, or submission readiness; those
+   checks are `UNVERIFIED` until a fresh PDF is rendered and inspected. For
+   Word/DOCX delivery, use its own DOCX build and render gate; a missing PDF is
+   not by itself a block.
 5. A synthetic fixture proves only that the local toolchain can compile a small
    document. It is not scientific validity, model validation, CUMCM compliance,
    or evidence that a real paper's tables, formulas, fonts, or page count pass.
@@ -235,7 +252,7 @@ validation.
    acceptance result, or recommend evasion. Preserve required disclosures and
    author review.
 
-## Windows XeLaTeX preflight
+## Windows XeLaTeX preflight for LaTeX/PDF delivery
 
 Run `xelatex --version` (or the explicitly requested engine) and record the
 resolved executable. On Windows, the builder ignores only PATH entries whose
@@ -272,15 +289,18 @@ Add to `SKILL.md` after the LaTeX routing paragraph:
 ```markdown
 For engine, template, PDF, or platform-readiness questions, also load
 `references/environment-readiness.md`. It distinguishes `ready`,
-`ready_with_author_checks`, and `blocked`; a missing engine or fresh PDF is
-never hidden by a renderer fallback or an older artifact.
+`ready_with_author_checks`, and `blocked`; when LaTeX/PDF delivery is
+requested, a missing engine or fresh PDF is never hidden by a renderer
+fallback or an older artifact.
 ```
 
 Add to `references/preflight.md`:
 
 ```markdown
-Load environment-readiness.md before assigning a readiness status. A missing
-engine, missing template, failed build, or absent fresh PDF is `blocked`; an
+Load environment-readiness.md before assigning a readiness status. For
+LaTeX/PDF delivery, a missing engine, missing template, failed build, or
+absent fresh PDF is `blocked`; for Word/DOCX or source-only delivery, assess
+the requested artifact with its own renderer and do not require XeLaTeX. An
 uninspected selected-year rule or author-owned field is
 `ready_with_author_checks`, not passed by assumption.
 ```
@@ -300,6 +320,8 @@ Add to `static/core/output-format.md` under the preflight contract:
 Use `ready`, `ready_with_author_checks`, or `blocked` from
 `references/environment-readiness.md`; technical compilation cannot override
 an unresolved selected-year authority or author-owned submission check.
+Word/DOCX delivery does not require XeLaTeX; readiness is specific to the
+requested artifact.
 ```
 
 - [ ] **Step 4: Run focused and regression contracts**
@@ -350,6 +372,7 @@ import importlib.util
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -369,8 +392,10 @@ class RealXeLaTeXBuildTests(unittest.TestCase):
                 (ROOT / 'tests' / 'fixtures' / 'minimal-xelatex.tex').read_text(encoding='utf-8'),
                 encoding='utf-8',
             )
-            result = builder.build(source, output)
+            with patch.object(builder.subprocess, 'run', wraps=builder.subprocess.run) as run:
+                result = builder.build(source, output)
             self.assertEqual(result, output.resolve())
+            self.assertEqual(run.call_count, 2)
             self.assertTrue(output.is_file())
             self.assertTrue(output.read_bytes().startswith(b'%PDF-'))
             self.assertEqual(list(root.glob('cumcm-build-*')), [])

@@ -1,7 +1,9 @@
 # Submission preflight
 
-Load environment-readiness.md before assigning a readiness status. A missing
-engine, missing template, failed build, or absent fresh PDF is `blocked`; an
+Load environment-readiness.md before assigning a readiness status. For
+LaTeX/PDF delivery, a missing engine, missing template, failed build, or
+absent fresh PDF is `blocked`; for Word/DOCX or source-only delivery, assess
+the requested artifact with its own renderer and do not require XeLaTeX. An
 uninspected selected-year rule or author-owned field is
 `ready_with_author_checks`, not passed by assumption.
 

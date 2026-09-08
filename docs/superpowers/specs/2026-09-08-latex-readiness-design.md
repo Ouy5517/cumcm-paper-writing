@@ -11,9 +11,11 @@ the current computer, then verify a fresh PDF build end to end.
 
 - Use MiKTeX as the Windows LaTeX distribution; install it with the existing
   `winget` package manager when available.
-- Keep XeLaTeX as the default engine. A missing engine is a blocking rendering
-  condition with an actionable installation message; it must never trigger a
-  silent switch to ReportLab, Word, Markdown, or another renderer.
+- Keep XeLaTeX as the default engine for LaTeX/PDF delivery. A missing engine is
+  a blocking rendering condition there, with an actionable installation
+  message; it must never trigger a silent switch to ReportLab, Word, Markdown,
+  or another renderer. Word/DOCX and source-only delivery use their own
+  artifact-specific renderer checks and do not require XeLaTeX.
 - Sanitize `PATH` entry-by-entry. A `PermissionError`, other `OSError`, or
   invalid path value while checking one entry is treated as an unusable entry,
   not as a failure of the whole build. The compiler lookup still fails clearly
@@ -64,12 +66,15 @@ in their original order.
 `references/environment-readiness.md` is routed on demand for render,
 preflight, template, or engine questions. It defines:
 
-- `ready`: fresh compilation, PDF inspection, visual review, anonymity, and
-  package checks all have evidence;
+- `ready`: the requested final artifact was freshly produced and its applicable
+  structure, visual, anonymity, and package checks all have evidence. A
+  LaTeX/PDF artifact requires fresh PDF inspection; Word/DOCX requires fresh
+  DOCX and Word-render inspection;
 - `ready_with_author_checks`: the build is usable but selected-year authority,
   author fields, or another author-owned check is still unresolved;
-- `blocked`: the engine, template, source, or required evidence is unavailable
-  or the build gate failed.
+- `blocked`: the requested artifact's engine/template, source, required
+  evidence, or build gate is unavailable or failed. XeLaTeX is required only
+  for LaTeX/PDF delivery.
 
 The reference also states that a synthetic fixture demonstrates the toolchain,
 not scientific validity or competition compliance; no visual pass may be

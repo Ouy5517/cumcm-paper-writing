@@ -3,6 +3,7 @@ import importlib.util
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,8 +23,10 @@ class RealXeLaTeXBuildTests(unittest.TestCase):
                 (ROOT / 'tests' / 'fixtures' / 'minimal-xelatex.tex').read_text(encoding='utf-8'),
                 encoding='utf-8',
             )
-            result = builder.build(source, output)
+            with patch.object(builder.subprocess, 'run', wraps=builder.subprocess.run) as run:
+                result = builder.build(source, output)
             self.assertEqual(result, output.resolve())
+            self.assertEqual(run.call_count, 2)
             self.assertTrue(output.is_file())
             self.assertTrue(output.read_bytes().startswith(b'%PDF-'))
             self.assertEqual(list(root.glob('cumcm-build-*')), [])

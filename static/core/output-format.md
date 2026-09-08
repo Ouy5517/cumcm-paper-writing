@@ -30,6 +30,8 @@ ready, ready_with_author_checks, or blocked.
 Use `ready`, `ready_with_author_checks`, or `blocked` from
 `references/environment-readiness.md`; technical compilation cannot override
 an unresolved selected-year authority or author-owned submission check.
+Word/DOCX delivery does not require XeLaTeX; readiness is specific to the
+requested artifact.
 
 Report separately: task coverage (complete/partial), scientific validation
 (passed/limited/unverified), rendering checks and package compliance. A ready

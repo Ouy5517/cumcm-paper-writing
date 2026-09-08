@@ -52,8 +52,9 @@ silently changing renderers.
 
 For engine, template, PDF, or platform-readiness questions, also load
 `references/environment-readiness.md`. It distinguishes `ready`,
-`ready_with_author_checks`, and `blocked`; a missing engine or fresh PDF is
-never hidden by a renderer fallback or an older artifact.
+`ready_with_author_checks`, and `blocked`; when LaTeX/PDF delivery is
+requested, a missing engine or fresh PDF is never hidden by a renderer
+fallback or an older artifact.
 
 ## Submission gate
 

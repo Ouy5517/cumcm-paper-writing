@@ -40,6 +40,15 @@ class EnvironmentReadinessContractTests(unittest.TestCase):
         self.assertIn('cannot claim visual', text)
         self.assertIn('older pdf', text)
 
+    def test_word_delivery_keeps_an_artifact_specific_path(self):
+        rendered = self.read('static/fragments/delivery/rendered.md')
+        electronic = self.read('static/fragments/delivery/electronic.md')
+        preflight = self.read('references/preflight.md')
+        self.assertIn('docx', rendered)
+        self.assertIn('file formats', electronic)
+        self.assertIn('word', rendered)
+        self.assertIn('do not require xelatex', preflight)
+
 
 if __name__ == '__main__':
     unittest.main()
