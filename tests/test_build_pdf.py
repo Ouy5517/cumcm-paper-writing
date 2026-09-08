@@ -44,6 +44,7 @@ class BuildTests(unittest.TestCase):
             self.assertEqual(output.read_bytes(), b'%PDF-new')
             self.assertEqual(len(calls), 2)
             self.assertNotIn(restricted, which.call_args.kwargs['path'])
+
     def exercise(self, mode):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

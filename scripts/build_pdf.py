@@ -7,14 +7,14 @@ import subprocess
 import tempfile
 
 
-def _path_entry_is_usable(entry):
+def _path_entry_is_usable(entry: str) -> bool:
     try:
         return Path(entry).is_dir()
     except (OSError, ValueError):
         return False
 
 
-def _sanitize_path(path_value):
+def _sanitize_path(path_value: str) -> str:
     return os.pathsep.join(
         entry for entry in path_value.split(os.pathsep)
         if _path_entry_is_usable(entry)
