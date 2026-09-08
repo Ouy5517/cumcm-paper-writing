@@ -1,5 +1,10 @@
 # Submission preflight
 
+Load environment-readiness.md before assigning a readiness status. A missing
+engine, missing template, failed build, or absent fresh PDF is `blocked`; an
+uninspected selected-year rule or author-owned field is
+`ready_with_author_checks`, not passed by assumption.
+
 Record the selected year, inspected official notice, and supplied template.
 Treat exact requirements as binding CUMCM rules only when supported by those
 authorities; keep non-binding editorial guidance separate. Record PASS / FAIL /

@@ -87,6 +87,8 @@ references:
       path: references/code-appendix.md
     - condition: a PDF must be generated with LaTeX, formulas render incorrectly, or a reproducible XeLaTeX build and support package is required
       path: references/latex-production-workflow.md
+    - condition: the LaTeX engine, template availability, PDF render, or environment readiness is uncertain
+      path: references/environment-readiness.md
     - condition: a CUMCMThesis/cumcmthesis class, style, example, or local template folder is supplied
       path: references/cumcmthesis-template.md
     - condition: historical rule pointers are needed; verify original sources before enforcement

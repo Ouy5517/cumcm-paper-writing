@@ -72,6 +72,11 @@ script beside it and test representative formulas before converting the full
 paper. Do not use ReportLab, Word text runs, or a Markdown renderer as a silent
 fallback for mathematical typesetting when the requested output is LaTeX.
 
+Load environment-readiness.md before compiling. Verify the requested engine
+and template first; if either is unavailable, stop with `blocked` and preserve
+the source. Never use an older PDF or a different renderer as evidence of a
+fresh LaTeX build.
+
 ## 3. Build reproducibly
 
 Compile in an isolated build directory so auxiliary files do not pollute the
