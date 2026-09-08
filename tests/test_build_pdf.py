@@ -1,4 +1,5 @@
 import importlib.util
+import os
 from pathlib import Path
 import subprocess
 import tempfile
@@ -11,6 +12,38 @@ SPEC.loader.exec_module(builder)
 
 
 class BuildTests(unittest.TestCase):
+    def test_permission_denied_path_entry_is_ignored(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source, output = root / 'paper.tex', root / 'paper.pdf'
+            source.write_text('test source', encoding='utf-8')
+            restricted = r'C:\Users\14564\AppData\Local\Microsoft\WindowsApps'
+            calls = []
+
+            def compiler(command, **kwargs):
+                calls.append(command)
+                work = Path(next(x.split('=', 1)[1] for x in command
+                                 if x.startswith('-output-directory=')))
+                (work / 'paper.log').write_text('', encoding='utf-8')
+                (work / 'paper.pdf').write_bytes(b'%PDF-new')
+                return subprocess.CompletedProcess(command, 0, '', '')
+
+            original_is_dir = builder.Path.is_dir
+
+            def guarded_is_dir(path):
+                if str(path) == restricted:
+                    raise PermissionError('access denied')
+                return original_is_dir(path)
+
+            with patch.object(builder.Path, 'is_dir', guarded_is_dir), \
+                 patch.object(builder.shutil, 'which', return_value='xelatex') as which, \
+                 patch.object(builder.subprocess, 'run', side_effect=compiler), \
+                 patch.dict(os.environ, {'PATH': os.pathsep.join([restricted, str(root)])}, clear=False):
+                builder.build(source, output)
+
+            self.assertEqual(output.read_bytes(), b'%PDF-new')
+            self.assertEqual(len(calls), 2)
+            self.assertNotIn(restricted, which.call_args.kwargs['path'])
     def exercise(self, mode):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

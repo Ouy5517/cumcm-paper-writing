@@ -7,6 +7,20 @@ import subprocess
 import tempfile
 
 
+def _path_entry_is_usable(entry):
+    try:
+        return Path(entry).is_dir()
+    except (OSError, ValueError):
+        return False
+
+
+def _sanitize_path(path_value):
+    return os.pathsep.join(
+        entry for entry in path_value.split(os.pathsep)
+        if _path_entry_is_usable(entry)
+    )
+
+
 def build(source, output, template=None, engine='xelatex'):
     source, output = Path(source).resolve(), Path(output).resolve()
     if not source.is_file():
@@ -14,7 +28,7 @@ def build(source, output, template=None, engine='xelatex'):
     if source == output:
         raise ValueError('Source and output must differ')
     env = os.environ.copy()
-    env['PATH'] = os.pathsep.join(p for p in env.get('PATH', '').split(os.pathsep) if Path(p).is_dir())
+    env['PATH'] = _sanitize_path(env.get('PATH', ''))
     if template:
         template = Path(template).resolve()
         if not template.is_dir():
