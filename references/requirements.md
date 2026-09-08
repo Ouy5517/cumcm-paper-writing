@@ -1,18 +1,23 @@
 # CUMCM paper requirements reference
 
-Verification status: UNVERIFIED historical notes. Read year-selection.md first.
-The numbers and declarations below are not enforceable until their original
-source is identified and checked for the selected year. Official notices outrank
-template conventions; a supplied template cannot override an official rule.
+Verification status: UNVERIFIED research pointers. Read
+year-selection.md first. These 2019, 2025, and 2026 notes are never automatic
+defaults. A number, declaration, or packaging instruction is not a **binding
+CUMCM rule** until its original official notice is identified and inspected for
+the selected year. A supplied template may fill unspecified typography only;
+it cannot override that notice. Everything else is **non-binding editorial
+guidance**.
 
-Source basis: the local converted copies of the 2026 revision, checked against the 2019 revision and 2025 revision. A newer official CUMCM notice, a division requirement, or the user's supplied template overrides this baseline.
+Research basis: unverified notes associated with the 2019, 2025, and 2026
+revisions. Use them to locate original sources, never to enforce a rule. The
+selected year's inspected official notice and entry package control.
 
 When the user supplies a local `CUMCMThesis` template, use its class/style/example
 for unspecified typography, heading, table, figure, and keyword conventions;
 do not copy sample content, identity placeholders, advertisements, or decorative
 demonstration boxes into the paper.
 
-## Current baseline: 2026 revision
+## Unverified 2026 research pointer
 
 ### Physical-paper package
 
@@ -61,19 +66,21 @@ demonstration boxes into the paper.
 
 Never mix page limits, declarations, or AI-use rules across years. Record the selected year in the generation notes and apply one version consistently.
 
-## Generation checklist
+## Conditional verification checklist
 
-Before producing the final paper, verify:
+Before producing the final paper, first discard every item not supported by the
+selected year's inspected authority. Every bullet below is conditional; for
+retained items, verify:
 
 - [ ] Year, group, problem choice, and division-specific rules are known or marked as placeholders.
-- [ ] Abstract and keywords fit one dedicated page; electronic paper begins there.
-- [ ] A4 page, four margins >= 2.5 cm, left binding, no table of contents.
+- [ ] If required, abstract and keywords fit one dedicated page and electronic paper begins there.
+- [ ] If required, A4 page, four margins >= 2.5 cm, left binding, and no table of contents.
 - [ ] Arabic footer page numbers start at 1 on the abstract page and continue consecutively.
 - [ ] Body is within the selected year's limit; appendix is included and printable for the physical package.
 - [ ] Consent and numbering pages are excluded from electronic paper and supporting archive.
 - [ ] No contestant/school/division identifiers occur in anonymous sections, metadata, filenames, code comments, or archives.
 - [ ] All cited sources have in-text markers and reference-list entries.
-- [ ] The applicable 2026 AI-use statement appears before references and agrees with `AI工具使用详情.pdf` when AI was used.
+- [ ] The selected year's verified AI-use statement and any required detail file agree.
 - [ ] Appendix contains the supporting-material list and runnable source code, or the exact no-program declaration.
 - [ ] Supporting archive is one anonymous ZIP/RAR <=20 MB; electronic paper is one uncompressed PDF/Word <=20 MB.
 - [ ] Paper results, code, data, and supporting files are mutually consistent.

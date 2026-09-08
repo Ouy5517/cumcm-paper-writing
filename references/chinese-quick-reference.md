@@ -1,8 +1,10 @@
-# 全国大学生数学建模竞赛论文格式规范（2026年修订稿）
+# 全国大学生数学建模竞赛中文用语核对
 
-This quick reference preserves exact labels and declarations for Chinese
-generation. The detailed baseline is in references/requirements.md; a newer
-official notice or division rule overrides it.
+This quick reference contains UNVERIFIED 2026 research pointers for Chinese
+generation. Use an exact label, declaration, or number only when it appears in
+the selected year's inspected official notice or supplied template. Such a
+verified instruction is a binding CUMCM rule; the explanatory prose here is
+non-binding editorial guidance.
 
 ## 常用页面与交付标签
 
@@ -18,7 +20,7 @@ official notice or division rule overrides it.
 
 - 源程序：include every complete runnable source program in the appendix, or use the exact no-program declaration.
 
-## Exact declarations
+## Candidate declarations requiring source verification
 
 - No program used: “本论文没有用到程序”.
 - No supporting material: “本论文没有支撑材料”.
@@ -28,7 +30,8 @@ official notice or division rule overrides it.
 - AI not used: “本参赛队在竞赛过程中未使用任何AI工具。”
 - AI used: “本参赛队在竞赛过程中使用了AI工具，主要用于【简要用途】，详细使用情况见支撑材料。”
 
-Select exactly one and place it before references. Replace `【简要用途】` with
+If the selected year's official notice requires one of these declarations,
+select exactly one and place it where that notice specifies. Replace `【简要用途】` with
 the true bounded uses; when AI was used, add `AI工具使用详情.pdf` to the support
 archive.
 
@@ -39,5 +42,5 @@ archive.
 - Electronic paper and support archive: “文件大小不超过20MB”.
 - 不要目录。页码从摘要页开始用阿拉伯数字 1，页脚居中。
 
-Use these Chinese strings exactly when the official form requires them. Do not
+Use these Chinese strings exactly only when the inspected official form requires them. Do not
 translate, shorten, or replace the two declarations with a paraphrase.

@@ -1,33 +1,27 @@
 name: cumcm-paper-writing
-version: 0.5.0
+version: 2.0.0
 description: >
-  Declarative routing for source-grounded, contest-aware modeling paper
-  planning, drafting, rendering, review, and submission preflight.
+  Declarative CUMCM-only routing for Chinese paper planning, drafting,
+  revision, validation, rendering, and submission packaging.
 
 always_load:
   - static/core/stance.md
   - static/core/workflow.md
   - static/core/output-format.md
+  - static/core/reader-contract.md
+  - static/core/terminology-notation-ledger.md
 
 axes:
-  contest:
-    detect: Select the named contest; unknown contests use generic. The actual year is case metadata, not a global CUMCM selector.
-    values:
-      generic: references/contest-profile.md
-      cumcm: references/contest-profile.md
-      mcm-icm: references/contest-profile.md
-      course: references/contest-profile.md
-    default: generic
-    multi: false
   task:
     detect: |
-      Choose one or more modes from plan, draft-section, draft-paper,
+      Choose one or more modes from plan, draft-section, draft-paper, polish,
       restructure, audit, preflight, and submission-package. Use preflight
       whenever the user asks whether a paper is ready to submit.
     values:
       plan: static/fragments/task/plan.md
       draft-section: static/fragments/task/draft-section.md
       draft-paper: static/fragments/task/draft-paper.md
+      polish: static/fragments/task/polish.md
       restructure: static/fragments/task/restructure.md
       audit: static/fragments/task/audit.md
       preflight: static/fragments/task/preflight.md
@@ -48,21 +42,44 @@ axes:
     default: source
     multi: true
 
-  language:
+  section:
     detect: |
-      Default to Chinese for a Chinese request. Preserve mathematical symbols,
-      variable names, and standard English method names when they are canonical.
+      Detect one or more requested paper sections. For a full paper, load the
+      requested section fragments in argument order; do not load every section
+      merely because one section is named.
     values:
-      zh: static/fragments/language/zh.md
-      en: static/fragments/language/en.md
-    default: zh
-    multi: false
+      abstract: static/fragments/section/abstract.md
+      problem-analysis: static/fragments/section/problem-analysis.md
+      assumptions-notation: static/fragments/section/assumptions-notation.md
+      model-formulation: static/fragments/section/model-formulation.md
+      solution-results: static/fragments/section/solution-results.md
+      validation-sensitivity: static/fragments/section/validation-sensitivity.md
+      model-evaluation: static/fragments/section/model-evaluation.md
+      conclusion: static/fragments/section/conclusion.md
+      references: static/fragments/section/references.md
+      appendix: static/fragments/section/appendix.md
+    multi: true
+
+  model_family:
+    detect: |
+      Detect one or more model families actually used: evaluation, prediction,
+      optimization, mechanistic, simulation, or hybrid. A hybrid also requires
+      its component families.
+    values:
+      evaluation: static/fragments/model_family/evaluation.md
+      prediction: static/fragments/model_family/prediction.md
+      optimization: static/fragments/model_family/optimization.md
+      mechanistic: static/fragments/model_family/mechanistic.md
+      simulation: static/fragments/model_family/simulation.md
+      hybrid: static/fragments/model_family/hybrid.md
+    multi: true
 
 references:
   on_demand:
-    - condition: drafting or auditing a complete competition solution
+    - condition: drafting or auditing a complete CUMCM solution
       path: references/problem-coverage.md
-    - condition: formulating or validating descriptive, predictive, optimization or simulation models
+    - condition: formulating or validating evaluation, prediction, optimization,
+        mechanistic, simulation, or hybrid models
       path: references/model-validation.md
     - condition: generating or revising manuscript, figures, code and submission artifacts
       path: references/artifact-consistency.md
@@ -72,13 +89,21 @@ references:
       path: references/latex-production-workflow.md
     - condition: a CUMCMThesis/cumcmthesis class, style, example, or local template folder is supplied
       path: references/cumcmthesis-template.md
-    - condition: CUMCM only and historical rule pointers are needed; verify original sources before enforcement
+    - condition: historical rule pointers are needed; verify original sources before enforcement
       path: references/requirements.md
     - condition: planning or drafting a full paper structure
       path: references/paper-structure.md
+    - condition: results, full-paper drafting, compression, result placement, or repeated tables require evidence allocation
+      path: references/main-text-discipline.md
+    - condition: full-paper or multi-round consistency review, or abstract/body/conclusion disagreement
+      path: references/consistency-sweep.md
+    - condition: layout/typesetting, table walls, sparse pages, stranded headings, float, or overflow problems
+      path: references/layout-diagnosis.md
     - condition: claim/evidence provenance, citation, or reproducibility is uncertain
       path: references/evidence-ledger.md
     - condition: final PDF/Word or archive submission readiness is being checked
       path: references/preflight.md
-    - condition: CUMCM only and verified Chinese declaration wording is needed
+    - condition: practical FAQ questions concern preflight, validation, appendix versus support package, or submission requirements
+      path: references/cumcm-practical-faq.md
+    - condition: verified Chinese declaration wording is needed
       path: references/chinese-quick-reference.md

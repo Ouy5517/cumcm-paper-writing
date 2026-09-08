@@ -1,8 +1,11 @@
 # Compact contest baseline
 
-This is an UNVERIFIED historical 2026 summary, not an always-loaded default.
-Read references/year-selection.md and verify each applicable rule against the
-selected year's original notice before enforcement.
+This is an UNVERIFIED historical 2026 research pointer, never an automatic
+default. Read references/year-selection.md and verify each applicable rule for
+the selected year against its official notice before enforcement. Only that
+verified authority creates a binding CUMCM rule. A supplied template controls
+its demonstrated typography where the notice is silent; all remaining prose is
+non-binding editorial guidance.
 
 - Physical package: white A4, all four margins at least 2.5 cm, left binding.
   Physical page 1 is the consent letter; page 2 is the numbering page; page 3
@@ -20,7 +23,8 @@ selected year's original notice before enforcement.
   The appendix lists its files and source programs.
 - If no program or support archive exists, use the exact Chinese declarations
   in references/chinese-quick-reference.md.
-- Anonymous sections must not reveal contestant, institution, or division.
-  Current-year AI-use and entry notices are separate authority checks.
+- Anonymous sections must not reveal contestant, institution, or division when
+  the selected-year verified notice requires anonymity. Selected-year verified
+  AI-use and entry notices are separate authority checks.
 - A supplied 2026 AI-use rule requires a truthful statement before references
   and, when AI is used, an anonymous detail PDF in supporting materials.

@@ -5,10 +5,11 @@ notation must remain typeset, or when a `CUMCMThesis`/`cumcmthesis` template is
 available. This workflow turns verified paper content into a reproducible,
 anonymous submission artifact; it is not a substitute for evidence validation.
 
-Apply contest-profile.md first. The CUMCM class/style example below applies only
-when selected. Other templates may use article, ctexart or supplied classes.
-Identity policy, front matter and supporting-file requirements come from the
-profile. Code selection follows code-appendix.md; complete code stays in the
+Resolve the selected year and inspect its official notice first. The CUMCM
+class/style example below applies only to a matching supplied template. Other
+templates may use article, ctexart, or supplied classes. Identity policy, front
+matter, and supporting-file requirements come from that inspected authority.
+Code selection follows code-appendix.md; complete code stays in the
 engineering project even when omitted from the paper.
 
 ## Inputs and outputs
@@ -16,7 +17,7 @@ engineering project even when omitted from the paper.
 Required inputs:
 
 - verified prose, equations, tables, figures, citations, and appendix material;
-- the current-year notice and any supplied template files;
+- the selected-year official notice and any supplied template files;
 - runnable analysis/figure code and an evidence ledger.
 
 Required outputs:
@@ -24,8 +25,9 @@ Required outputs:
 - `paper.tex`, the authoritative typesetting source;
 - `paper.pdf`, compiled from that source;
 - complete source code, generated figures, reproduction commands, and any
-  required disclosure files in the profile's permitted delivery form;
-- a verification record with build, page, visual, anonymity, and hash results.
+  required disclosure files in the form permitted by the selected-year verified
+  CUMCM official notice and submission package;
+- a verification record with build, page, visual, anonymity, and package results.
 
 ## 1. Inspect and stage the template
 
@@ -38,10 +40,12 @@ Start an anonymous electronic paper with the template's supported equivalent of:
 
 ```tex
 \documentclass[withoutpreface,bwprint]{cumcmthesis}
-\usepackage{cumcm2026} % replace only when the selected year supplies another style
+\usepackage{cumcm2026} % only when the inspected supplied template uses this style
 ```
 
-The official notice overrides template comments. Keep the template and build
+Include `cumcm2026` only when the inspected supplied template actually uses
+`cumcm2026`; otherwise select the template's supplied year style or omit the
+year style. The official notice overrides template comments. Keep the template and build
 inputs inside the project or record their exact external prerequisite.
 
 ## 2. Create real LaTeX, not formula-shaped text
@@ -106,12 +110,17 @@ pdftoppm -png -r 140 paper/paper.pdf paper/tmp/render/page
 Interpret the first command contextually: code listings may contain literal
 source syntax, but mathematical prose and generated LaTeX must not contain
 flattened formula artifacts. Confirm A4 size, expected page count, blank author
-metadata, and current-year size limits with `pdfinfo` or equivalent tools.
+metadata, and selected-year verified size limits with `pdfinfo` or equivalent tools.
 
 Inspect every rendered page, including the appendix. Check title/abstract page,
 heading hierarchy, equation glyphs and numbering, table rules, figure labels,
 page breaks, footer numbers, references, code wrapping, and blank/overflow pages.
 Source compilation is not visual verification.
+
+When an observed layout/typesetting issue involves table walls, sparse pages,
+stranded headings, floats, or overflow, load layout-diagnosis.md. Follow its
+compile-to-render diagnostic order and choose only a template-supported remedy
+for the observed failure.
 
 ## 5. Verify anonymity and package consistency
 
@@ -126,8 +135,8 @@ and required disclosure files. Exclude temporary render directories, caches,
 private/unused data, editor files, and obsolete non-LaTeX PDF builders.
 
 List archive members, rerun code/tests/verifiers, and compare paper values with
-generated reports and figures. Record SHA256 for the final PDF and support
-archive so the reviewed artifacts are identifiable.
+generated reports and figures. Record the final filenames and build revision so
+the reviewed artifacts are identifiable without a separate hash-validation step.
 
 ## Completion contract
 

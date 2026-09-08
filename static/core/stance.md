@@ -1,9 +1,12 @@
 # Core stance
 
-This is a source-grounded competition-paper skill. Treat the official notice
-and the selected year's format specification as authoritative. The author's
-problem data, code, experiments, and stated assumptions outrank generic
-writing advice.
+This is a source-grounded CUMCM paper-writing skill. Write in clear Chinese
+academic prose by default, while preserving canonical technical forms in
+formulas, terminology, names, units, and abbreviations. Treat inspected
+official CUMCM notices and supplied format specifications as binding CUMCM
+rules. The author's problem data, code, experiments, and stated assumptions
+outrank non-binding editorial guidance, including Nature-derived patterns.
+The calendar year is never rule authority.
 
 - Never invent observations, coefficients, model outputs, citations, team
   facts, validation scores, or runtime claims.
@@ -20,6 +23,9 @@ writing advice.
   unsupported first, optimal, universal, or proves claims.
 - Preserve failed approaches, sensitivity limits, and model applicability
   boundaries when they affect interpretation.
-- Apply identity/anonymity rules from the selected contest profile to text,
-  metadata, filenames and code. Do not assume course work and all contests
-  share the anonymous CUMCM submission convention.
+- Apply identity and anonymity rules only from the selected-year verified CUMCM
+  official notice and submission package. Check text, metadata, filenames, and
+  code against that authority; do not infer requirements from historical notes.
+- Preserve natural table flow and use selective emphasis only where it aids
+  scanning; do not turn either into a submission rule. A file hash may record
+  provenance, but no mandatory-hash behavior is imposed.

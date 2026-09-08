@@ -1,4 +1,4 @@
 interface:
-  display_name: "Modeling Competition Paper Writing"
-  short_description: "Draft and verify modeling competition papers"
-  default_prompt: "Use $cumcm-paper-writing for a contest-aware paper with validated models and concise code appendices."
+  display_name: "CUMCM Paper Writing"
+  short_description: "Write, revise, validate, and package Chinese CUMCM papers"
+  default_prompt: "Use $cumcm-paper-writing for this Chinese CUMCM paper task."

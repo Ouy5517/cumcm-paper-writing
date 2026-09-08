@@ -19,7 +19,11 @@ def validate(root):
                 errors.append(f'Invalid default: {name}')
             paths.extend(p for p in axis['values'].values() if p is not None)
         paths.extend(item['path'] for item in manifest['references']['on_demand'])
+        seen = set()
         for path in paths:
+            if path in seen:
+                errors.append(f'Duplicate route: {path}')
+            seen.add(path)
             target = (root / path).resolve()
             if Path(path).is_absolute() or not target.is_relative_to(root):
                 errors.append(f'Route escapes skill: {path}')

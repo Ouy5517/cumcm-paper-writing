@@ -1,25 +1,13 @@
 # Model validation
 
-Select checks by model type:
-- Descriptive: counting identities, batch keys, units, denominators and missingness.
-- Predictive: target timing, leakage, baseline, temporal/group-aware validation,
-  calibration and uncertainty.
-- Optimization: domains, objective type, complete constraints, feasibility,
-  solver status, gap and comparable inputs.
-- Simulation: assumptions, initialization, stochastic seeds/repeats, sensitivity,
-  and separation of observed and simulated effects.
+Define the output/estimand before selecting a model or diagnostic. Separate
+calibration and validation, and use a justified baseline that answers the same
+question. Quantify uncertainty where possible, including data, parameter, and
+scenario uncertainty.
 
-Every probability needs an event, conditioning set, numerator, denominator,
-sample size and missing-value rule. No observations means NA, not probability
-zero. Sparse cells need qualification; do not infer individual prediction accuracy.
-
-Define symbols and index sets. Distinguish original ordinal slots from compressed
-nonempty rankings. Empty entries do not authorize reindexing. Quadratic objectives
-need a compatible solver or an explicit reformulation.
-
-Separate training fit, validation and extrapolation. High training R-squared,
-small RMSE or alternating residual signs cannot prove absence of overfitting.
-Report sample/parameter counts and limitations when external validation is absent.
-Monotone nested-prefix counts may follow by construction, not a causal benefit.
-Distinguish observed differences, statistical significance, prediction and causality.
-New conclusions require evidence-ledger updates before publication.
+Test material assumptions rather than treating them as conclusions. Report
+failure cases, missing coverage, and the boundary beyond which a result is not
+supported. For hybrid systems, propagate uncertainty through hybrid interfaces;
+component-specific requirements belong in the selected model-family fragments.
+Use the model-family-specific principle in cumcm-practical-faq.md and place
+validation near the corresponding result when that improves reader flow.

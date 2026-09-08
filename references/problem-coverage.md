@@ -1,6 +1,6 @@
-# Problem coverage
+# CUMCM problem coverage
 
-Create one row per requested output:
+Create one row per output requested by the selected CUMCM problem:
 question ID | original requirement | needed inputs | model/output |
 code/result location | status | missing evidence and consequence.
 

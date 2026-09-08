@@ -1,5 +1,6 @@
 # Physical delivery
 
 Produce only requested printed artifacts. Verify paper size, binding, page order,
-numbering and any required forms using the profile. Do not assume every contest
-requires consent or numbering pages.
+numbering, and required forms against the selected year's inspected official
+CUMCM notice and supplied template. Do not infer consent or numbering pages from
+historical pointers.

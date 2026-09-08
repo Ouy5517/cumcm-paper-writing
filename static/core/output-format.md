@@ -8,11 +8,12 @@ with a polished paper without labeling both.
 Return: detected axes, one-sentence argument, section map, data/code inventory,
 claim-evidence ledger skeleton, assumptions, and next author inputs.
 
-## Draft or restructure
+## Draft, restructure, or polish
 
-Return: draft content, section outline, notation/terminology notes,
-Assumptions or missing inputs:, Claim-evidence map:, and Why this structure:.
-Use explicit placeholders for missing results, citations, or team fields.
+Return manuscript content, a section map, material assumptions/missing inputs,
+a claim-evidence map, terminology/notation decisions, and compact structural
+notes. Use explicit placeholders for missing results, citations, or team
+fields. Do not pad outputs with empty sections.
 
 ## Audit
 
