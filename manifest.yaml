@@ -1,8 +1,8 @@
 name: cumcm-paper-writing
-version: 2.0.0
+version: 3.1.0
 description: >
-  Declarative CUMCM-only routing for Chinese paper planning, drafting,
-  revision, validation, rendering, and submission packaging.
+  Declarative CUMCM-only routing from problem analysis and modeling to
+  computation, validation, Chinese writing, rendering, and submission packaging.
 
 always_load:
   - static/core/stance.md
@@ -14,10 +14,19 @@ always_load:
 axes:
   task:
     detect: |
-      Choose one or more modes from plan, draft-section, draft-paper, polish,
-      restructure, audit, preflight, and submission-package. Use preflight
+      Use full-workflow for a complete CUMCM solution. Otherwise select the
+      requested stages: understand, prepare-inputs, formulate, solve, validate,
+      plan, draft-section, draft-paper, polish, restructure, audit, preflight,
+      or submission-package. Resume each subquestion from its verified state.
+      Use preflight
       whenever the user asks whether a paper is ready to submit.
     values:
+      full-workflow: static/fragments/task/full-workflow.md
+      understand: static/fragments/task/understand.md
+      prepare-inputs: static/fragments/task/prepare-inputs.md
+      formulate: static/fragments/task/formulate.md
+      solve: static/fragments/task/solve.md
+      validate: static/fragments/task/validate.md
       plan: static/fragments/task/plan.md
       draft-section: static/fragments/task/draft-section.md
       draft-paper: static/fragments/task/draft-paper.md
@@ -63,8 +72,10 @@ axes:
   model_family:
     detect: |
       Detect one or more model families actually used: evaluation, prediction,
-      optimization, mechanistic, simulation, or hybrid. A hybrid also requires
-      its component families.
+      optimization, mechanistic, simulation, statistical-inference, geometry,
+      or hybrid. A hybrid requires coupled input/output dependencies and also
+      loads its component families. Choose models from the requested output
+      and available evidence, not topic keywords alone.
     values:
       evaluation: static/fragments/model_family/evaluation.md
       prediction: static/fragments/model_family/prediction.md
@@ -72,14 +83,26 @@ axes:
       mechanistic: static/fragments/model_family/mechanistic.md
       simulation: static/fragments/model_family/simulation.md
       hybrid: static/fragments/model_family/hybrid.md
+      statistical-inference: static/fragments/model_family/statistical-inference.md
+      geometry: static/fragments/model_family/geometry.md
     multi: true
 
 references:
   on_demand:
+    - condition: distilled case lessons, matching problem structure, or provenance of guidance from either source wave
+      path: references/distilled-playbooks.md
+    - condition: adding cases, auditing source quality, or understanding the skill architecture
+      path: references/distillation-method.md
+    - condition: time-dependent physical equations, curve constraints, event schedules, dated forecasts or prediction-to-decision interfaces
+      path: references/temporal-validation.md
+    - condition: data, images, geometry, parameter tables, time series, or document inputs need preparation
+      path: references/input-audit.md
+    - condition: choosing a model, diagnosing missing information, or planning a computational baseline
+      path: references/model-selection.md
     - condition: drafting or auditing a complete CUMCM solution
       path: references/problem-coverage.md
     - condition: formulating or validating evaluation, prediction, optimization,
-        mechanistic, simulation, or hybrid models
+        mechanistic, simulation, statistical-inference, geometry, or hybrid models
       path: references/model-validation.md
     - condition: generating or revising manuscript, figures, code and submission artifacts
       path: references/artifact-consistency.md

@@ -4,8 +4,13 @@ Load this reference when the requested deliverable is a PDF, when mathematical
 notation must remain typeset, or when a `CUMCMThesis`/`cumcmthesis` template is
 available. This workflow turns verified paper content into a reproducible,
 anonymous submission artifact; it is not a substitute for evidence validation.
+For a local formula repair, perform only the relevant source and rendering
+checks; the full outputs and packaging steps below apply when requested or
+required for delivery. Do not require a complete paper or competition notice
+before correcting a supplied mathematical expression.
 
-Resolve the selected year and inspect its official notice first. The CUMCM
+Resolve the selected year and inspect its official notice before enforcing
+submission requirements. A draft build can proceed with unverified rule status. The CUMCM
 class/style example below applies only to a matching supplied template. Other
 templates may use article, ctexart, or supplied classes. Identity policy, front
 matter, and supporting-file requirements come from that inspected authority.
@@ -14,15 +19,22 @@ engineering project even when omitted from the paper.
 
 ## Inputs and outputs
 
-Required inputs:
+Inputs required for compilation:
 
-- verified prose, equations, tables, figures, citations, and appendix material;
-- the selected-year official notice and any supplied template files;
-- runnable analysis/figure code and an evidence ledger.
+- TeX source, referenced figures/bibliography, any supplied template files and
+  the required compiler/fonts/packages.
+
+Inputs additionally required for scientific/submission readiness:
+
+- verified prose, equations, tables, figures, citations and appendix material;
+- the selected-year official authorities and their separate verification statuses;
+- reproducible analysis/figure evidence, including derivations where no code is
+  used. Missing these inputs must not be disguised by a successful compilation.
 
 Required outputs:
 
-- `paper.tex`, the authoritative typesetting source;
+- `paper.tex`, the compiled typesetting source; if Markdown is authoritative,
+  generate this TeX reproducibly and preserve Markdown as the editable authority;
 - `paper.pdf`, compiled from that source;
 - complete source code, generated figures, reproduction commands, and any
   required disclosure files in the form permitted by the selected-year verified
@@ -76,7 +88,12 @@ fallback for mathematical typesetting when the requested output is LaTeX.
 
 Compile in an isolated build directory so auxiliary files do not pollute the
 submission tree. Run xelatex 两次 (two passes) so references, numbering, and
-bookmarks settle; `latexmk -xelatex` is an acceptable equivalent.
+bookmarks settle for a plain document; `latexmk -xelatex` is an acceptable equivalent.
+When bibliography control files are generated, the bundled script runs BibTeX
+or Biber after the first TeX pass and then two more TeX passes. It permits one
+additional cross-reference pass and fails if unresolved warnings remain.
+Keep `.bib` and custom `.bst` paths reproducible; the required bibliography
+processor must be installed. A missing citation must not produce a ready PDF.
 
 Use the bundled compiler from the skill directory (source assets resolve from
 the TeX source's parent directory):

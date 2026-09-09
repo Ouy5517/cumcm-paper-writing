@@ -1,27 +1,37 @@
 # Core workflow
 
-For full papers: resolve the selected year with references/year-selection.md,
-inspect the official CUMCM notice and supplied template, and audit available
-data; then build, before prose:
+Scale work to the request. For a full solution, maintain a problem coverage
+matrix and a terminology and notation ledger as the work develops. Keep the
+initial one-sentence argument provisional; an unknown answer is not a result.
+Use references/year-selection.md for rule authority. Missing submission rules
+do not block independently answerable modeling or a draft compile.
 
-1. a one-sentence argument: problem, answer, model, evidence, and boundary;
-2. a problem coverage matrix: subproblem, output, method, data, result,
-   validation, paper location, and status;
-3. a terminology and notation ledger.
+1. Understand requested outputs, constraints, evaluation criteria and dependencies.
+2. Prepare the relevant data, parameter tables, geometry or documentary inputs.
+3. Formulate a model whose assumptions support the target; specify how it can fail.
+4. Solve the smallest useful version, retain reproducible evidence, then improve
+   only when a diagnosed error or unmet requirement warrants the added work.
+5. Validate with independent evidence, limiting cases, constraint residuals or
+   other checks appropriate to the claim. Return to the affected stage on failure.
+6. Draft from evidence outward, placing each question's method, result and checks
+   together. Draft the abstract last, after results and conclusion stabilize.
+7. Render, inspect and package against verified selected-year requirements.
 
-Use references/problem-coverage.md to map requirements and
-references/model-validation.md to select model checks. Draft from evidence
-outward: give each paragraph one primary job, and keep each subproblem's
-method, result, and validation close together. Draft the abstract last. Apply
-only verified selected-year CUMCM format and identity rules.
+The full-workflow task fragment controls stage loading. Analytical derivations
+are valid outputs; do not force a dataset, solver, random seed, or extra model.
+Track each subquestion separately and continue independent work when one is blocked.
+Use references/problem-coverage.md and references/model-validation.md for details.
 
 Use targeted revision for an identified weakness. After multi-round editing,
 trigger a whole-paper consistency sweep across the argument, coverage matrix,
 ledger, results, figures, tables, citations, and boundaries.
+For one local edit, inspect its claims and terminology and return the revised
+passage directly.
 
-For generation/revision read references/artifact-consistency.md. Set one
+For generation/revision affecting linked files read references/artifact-consistency.md.
+A standalone sentence edit does not need that production reference. Set one
 canonical source and regenerate affected dependencies together. Read
 references/code-appendix.md to select and verify concise code presentation.
 Keep build success, scientific validation, task coverage and submission checks
-separate. For local edits run the relevant subset. Existing user authorization
+separate; report actual human review independently. For local edits run the relevant subset. Existing user authorization
 persists; routine implementation does not require repeated confirmations.

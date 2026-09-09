@@ -89,7 +89,7 @@ class CumcmSpecializationContractTests(unittest.TestCase):
 
     def test_manifest_exposes_only_current_axes_and_tasks(self):
         manifest = yaml.safe_load((ROOT / 'manifest.yaml').read_text(encoding='utf-8'))
-        self.assertEqual(manifest['version'], '2.0.0')
+        self.assertEqual(manifest['version'], '3.1.0')
         self.assertNotIn('contest', manifest['axes'])
         self.assertNotIn('language', manifest['axes'])
         self.assertEqual(set(manifest['axes']), {'task', 'delivery', 'section', 'model_family'})
@@ -98,6 +98,8 @@ class CumcmSpecializationContractTests(unittest.TestCase):
             {
                 'plan', 'draft-section', 'draft-paper', 'polish', 'restructure',
                 'audit', 'preflight', 'submission-package',
+                'full-workflow', 'understand', 'prepare-inputs', 'formulate',
+                'solve', 'validate',
             },
         )
         self.assertEqual(
@@ -224,6 +226,8 @@ class CumcmSpecializationContractTests(unittest.TestCase):
                 'mechanistic': 'static/fragments/model_family/mechanistic.md',
                 'simulation': 'static/fragments/model_family/simulation.md',
                 'hybrid': 'static/fragments/model_family/hybrid.md',
+                'statistical-inference': 'static/fragments/model_family/statistical-inference.md',
+                'geometry': 'static/fragments/model_family/geometry.md',
             },
         )
         self.assertTrue(manifest['axes']['model_family']['multi'])
@@ -256,6 +260,10 @@ class CumcmSpecializationContractTests(unittest.TestCase):
             'hybrid': ('each component', 'interface variables/units', 'calibration order',
                        'component and end-to-end checks', 'propagated uncertainty',
                        'cross-model consistency', "one component's fit", 'full pipeline'),
+            'statistical-inference': ('estimand', 'independent unit', 'sampling',
+                                      'uncertainty', 'non-identifiability'),
+            'geometry': ('coordinate frame', 'quadrant', 'independent formula',
+                         'exported rounded solution', 'distance residuals'),
         }
         for family, relative_path in manifest['axes']['model_family']['values'].items():
             text = self.normalized_text(relative_path)

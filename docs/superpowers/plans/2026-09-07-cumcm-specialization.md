@@ -556,7 +556,7 @@ Run: `git commit -m "refactor: remove generic contest compatibility"`
 - Create: `tests/test_practical_faq_contract.py`
 
 **Interfaces:**
-- Consumes: user-supplied `C:\Users\14564\Desktop\papper writing\output.md` as non-authoritative source material.
+- Consumes: user-supplied `output.md` as non-authoritative source material.
 - Produces: a routed, normalized practical FAQ that remains subordinate to selected-year verified CUMCM authority.
 
 - [ ] **Step 1: Write failing normalization tests**

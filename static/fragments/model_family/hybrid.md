@@ -14,7 +14,10 @@ Validate each component and the full pipeline against relevant independent evide
 
 ## Sensitivity
 
-Vary interface variables/units, calibration order, and uncertainty passed between components.
+Vary meaningful interface values and uncertainty passed between components.
+Check interface variables/units for conversion invariance; do not perturb units
+as if they were physical parameters. Test calibration order only if scientifically
+meaningful; preserve actual computational dependencies.
 
 ## Failure boundary
 

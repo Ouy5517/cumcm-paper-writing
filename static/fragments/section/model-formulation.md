@@ -9,6 +9,9 @@ Use the problem-analysis criteria, notation ledger, assumptions, data definition
 ## Structure
 
 Give objective or state equations, constraints, domains, parameters, and the rationale for model selection.
+When comparing model routes, explain differences in assumptions, identifiable
+parameters, numerical cost and admissible outputs. Do not rank methods by the
+number of algorithms or compare reported optima defined by different objectives.
 
 ## Evidence boundary
 

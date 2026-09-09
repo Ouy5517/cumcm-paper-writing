@@ -2,8 +2,8 @@
 
 This quick reference contains UNVERIFIED 2026 research pointers for Chinese
 generation. Use an exact label, declaration, or number only when it appears in
-the selected year's inspected official notice or supplied template. Such a
-verified instruction is a binding CUMCM rule; the explanatory prose here is
+the selected year's inspected official notice. A supplied template alone does
+not verify an official rule. Such an officially verified instruction is a binding CUMCM rule; the explanatory prose here is
 non-binding editorial guidance.
 
 ## 常用页面与交付标签

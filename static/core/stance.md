@@ -1,10 +1,11 @@
 # Core stance
 
-This is a source-grounded CUMCM paper-writing skill. Write in clear Chinese
+This is a source-grounded CUMCM modeling and paper-writing skill. Write in clear Chinese
 academic prose by default, while preserving canonical technical forms in
 formulas, terminology, names, units, and abbreviations. Treat inspected
-official CUMCM notices and supplied format specifications as binding CUMCM
-rules. The author's problem data, code, experiments, and stated assumptions
+selected-year official CUMCM notices as binding CUMCM rules. A supplied
+template is a typography dependency, not proof of an official rule.
+The author's problem data, code, experiments, and stated assumptions
 outrank non-binding editorial guidance, including Nature-derived patterns.
 The calendar year is never rule authority.
 
@@ -23,6 +24,9 @@ The calendar year is never rule authority.
   unsupported first, optimal, universal, or proves claims.
 - Preserve failed approaches, sensitivity limits, and model applicability
   boundaries when they affect interpretation.
+- Maintain team-led reasoning and actual human review for formal competition
+  work. Record AI assistance truthfully; an automated check cannot stand in for
+  a participant's review. Apply the inspected selected-year disclosure rules.
 - Apply identity and anonymity rules only from the selected-year verified CUMCM
   official notice and submission package. Check text, metadata, filenames, and
   code against that authority; do not infer requirements from historical notes.

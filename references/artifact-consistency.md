@@ -8,7 +8,10 @@ the builder, README and downstream artifacts together.
 Maintain the code revision, result files, figure dependencies, and build commands
 in a case-local build record.
 After revision recompute affected results, update the ledger, regenerate figures,
-paper and code excerpts. Every included graphic must have a producing script;
+paper and code excerpts. Each computed graphic must have a producing script or
+an explicit reproducible calculation. For photographs, external images or manually
+drawn diagrams, record the source, permission when relevant and meaningful edits;
+do not invent a producing script for a raw photograph. In all cases,
 captions, counts and appendix inventory must match actual files.
 Run documented commands from a clean checkout with explicit dependencies.
 

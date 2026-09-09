@@ -1,4 +1,4 @@
 interface:
-  display_name: "CUMCM Paper Writing"
-  short_description: "Write, revise, validate, and package Chinese CUMCM papers"
-  default_prompt: "Use $cumcm-paper-writing for this Chinese CUMCM paper task."
+  display_name: "CUMCM 国赛建模与论文工作流"
+  short_description: "Solve, validate, write, and package Chinese CUMCM work"
+  default_prompt: "Use $cumcm-paper-writing to complete this CUMCM modeling or paper task from the current stage, with evidence-backed results and validation."

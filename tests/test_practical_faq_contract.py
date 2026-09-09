@@ -194,7 +194,7 @@ class PracticalFaqContractTests(unittest.TestCase):
             self.assertIn(principle, faq)
         self.assertIn("no ordinary artifact-hash requirement", faq)
 
-    def test_faq_rejects_evasion_and_named_commercial_tool_advice(self) -> None:
+    def test_faq_rejects_evasion_but_allows_legitimate_tool_use(self) -> None:
         raw_faq = self.read(FAQ_PATH)
         self.assertIn("Ethical stance: REJECT", raw_faq)
         self.assertEqual([], self.ethical_policy_violations(raw_faq))
@@ -207,7 +207,7 @@ class PracticalFaqContractTests(unittest.TestCase):
             "code-evasion": ("change code", "evade checks"),
             "disclosure-omission": ("omit", "routine ai interactions", "disclosure"),
             "weak-enforcement-exploit": ("exploit", "weak enforcement"),
-            "commercial-tool-recommendation": ("named commercial", "rewriting tool"),
+            "commercial-tool-recommendation": ("named commercial", "rewriting tool", "evade checks"),
         }
         for case, anchors in rejected_examples.items():
             self.assertEqual(rows[case]["decision"], "REJECT", case)
@@ -222,6 +222,7 @@ class PracticalFaqContractTests(unittest.TestCase):
             "Only disclose AI-use records required by the verified selected-year notice.",
         )
         self.assertNotEqual(positive["decision"], "REJECT")
+        self.assertEqual(rows["legitimate-tool-use"]["decision"], "ALLOW_WITH_VERIFIED_RULES")
 
         mutations = {
             "stance reversal": (

@@ -8,12 +8,23 @@ with a polished paper without labeling both.
 Return: detected axes, one-sentence argument, section map, data/code inventory,
 claim-evidence ledger skeleton, assumptions, and next author inputs.
 
+## Modeling stages or full-workflow
+
+Deliver the requested solution artifacts and a compact record of subquestion
+state, chosen model and rejected alternative when relevant, actual executed
+commands or derivations, results, validation evidence and limitations. Report
+what ran, what was only inspected, and which conclusions remain unverified.
+Use existing coverage and evidence records; no mandatory duplicate reports.
+When continuing through writing, use the corresponding contract below.
+
 ## Draft, restructure, or polish
 
 Return manuscript content, a section map, material assumptions/missing inputs,
 a claim-evidence map, terminology/notation decisions, and compact structural
 notes. Use explicit placeholders for missing results, citations, or team
 fields. Do not pad outputs with empty sections.
+For a local polish, return the revised passage and only material notes; omit
+whole-paper maps and ledgers when the edit does not need them.
 
 ## Audit
 
@@ -31,3 +42,5 @@ Report separately: task coverage (complete/partial), scientific validation
 (passed/limited/unverified), rendering checks and package compliance. A ready
 format does not override incomplete required results. State the chosen code
 appendix policy and any unresolved rule authority.
+For formal competition work, report human review separately as confirmed by
+the team / pending / not applicable. Never infer confirmation from silence.

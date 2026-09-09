@@ -4,7 +4,8 @@ Close the argument by answering every subproblem consistently with the abstract 
 
 ## Required inputs
 
-Use the coverage matrix, stabilized results, validation findings, and abstract draft.
+Use the coverage matrix, stabilized results and validation findings. An abstract
+draft is optional; reconcile it after drafting the abstract last.
 
 ## Structure
 
